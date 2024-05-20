@@ -1,10 +1,11 @@
 import express from "express";
 import productsRouters from "./routes/products.route.js"
 import connectDB from "./lib/db.js";
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const app = express()
-
-const PORT = 4000;
 
 
 app.use(express.json());
@@ -17,6 +18,6 @@ connectDB();
 app.use('/api/products', productsRouters)
 
 
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running at http://localhost:${process.env.PORT}`)
 })
