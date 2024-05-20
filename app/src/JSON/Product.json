@@ -1,0 +1,91 @@
+
+
+
+[{
+    "index" : 1,
+    "product_id": "VAL_BREATHE",
+    "product_name": "VAL BREATHE",
+    "category_id": 1,
+    "process": [
+        {
+            "index": 1,
+            "id": 0
+        },
+        {
+            "index": 2,
+            "id": 1
+        }
+    ],
+    "product_discription": "This high-quality 100% polyester breather can conform to complex laminate shapes and boasts excellent ventilation, making it suitable for vacuum and autoclave pressure processing.",
+    "product_image": "VAL_BREATHE",
+    "display_title": "VAL BREATHE",
+    "temperature": 160,
+    "physical_dimensions": [
+        {
+            "index": 1,
+            "id" : "weight",
+            "name": "Weight",
+            "type": "Number",
+            "unit": "g/m²"
+        },
+        {
+            "index": 2,
+            "id": "roll_size",
+            "name": "Roll Size",
+            "type": "String",
+            "unit": ""
+        }
+    ],
+    "dimension_values": [
+        {
+            "index": 1,
+            "id": 1,
+            "value": {
+                "weight": "100", 
+                "roll_size": "W: 1.5 M X L: 100 M"
+            }
+        },
+        {
+            "index": 2,
+            "id": 2,
+            "values": {
+                "weight": "120", 
+                "roll_size": "W: 1.5 M X L: 100 M"
+            }
+        },
+        {
+            "index": 3,
+            "id": 3,
+            "values": { 
+                "weight": "150", 
+                "roll_size": "W: 1.5 M X L: 100 M"
+            }
+        },
+        {
+            "index": 4,
+            "id": 4,
+            "values": { 
+                "weight": "230", 
+                "roll_size": "W: 1.5 M X L: 50 M"
+            }
+        },
+        {
+            "index": 5,
+            "id": 5,
+            "value": { 
+                "weight": "300", 
+                "roll_size": "W: 1.5 M X L: 50 M"
+            }
+        },
+        {
+            "index": 6,
+            "id": 6,
+            "value": { 
+                "weight": 400, 
+                "roll_size": "W: 1.5 M X L: 50 M"
+            }
+        }
+    ]
+}
+]
+

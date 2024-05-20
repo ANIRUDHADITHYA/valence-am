@@ -1,0 +1,150 @@
+.bas-section {
+    position: relative;
+    min-height: 100vh;
+}
+
+
+
+.entry-subtitles-bas {
+    font-size: 22px;
+    text-align: center;
+}
+
+
+.entry-titles-bas {
+    font-size: 52px;
+    padding-bottom: 35px;
+    font-weight: 5px;
+    text-align: center;
+}
+
+.bas-image {
+    height: 98vh;
+    padding: 0;
+    margin: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("/public/Asserts/BAS/intro_c.jpeg");
+    display: flex;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    top: 0px;
+    width: 100%;
+}
+
+.bas-features-container {
+    padding: 80px 0px;
+    padding-bottom: 0px;
+}
+
+.bas-features-container .about-us-features {
+    padding-bottom: 50px;
+}
+
+.bas-features-title {
+    font-size: 32px;
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.aboutUsMainContainer.bas {
+    padding: 0;
+    width: 80%;
+    margin: auto;
+    padding: 0px 50px;
+}
+
+
+.aboutUsMainContainer.bas h1 {
+    font-size: 32px;
+}
+
+.aboutUsMainContainer.bas h3 {
+    font-weight: 400;
+}
+
+.getInTouchSection.bas {
+    width: 80%;
+    margin: auto;
+    padding: 60px 50px 150px 50px;
+}
+
+.getInTouchSection.bas .getInTouchSectionContainer h1 {
+    padding-bottom: 50px;
+    margin: 0;
+    font-size: 32px;
+}
+
+.floating-label-group-button.bas button {
+    margin-bottom: 25px;
+}
+
+.bas-conatct-info {
+    padding-bottom: 50px;
+    color: var(--secondary-color);
+    font-size: 16px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.bas-conatct-info a {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.bas-conatct-info a:hover {
+    cursor: pointer;
+}
+
+@media(max-width: 850px) {
+    .getInTouchSection.bas {
+        padding-bottom: 200px;
+    }
+
+    .bas-image {
+        height: 60vh;
+    }
+
+    .entry-subtitles-bas {
+        font-size: 18px;
+        text-align: center;
+        width: 80%;
+        margin: auto;
+    }
+
+    .entry-titles-bas {
+        font-size: 48px;
+        padding-top: 50px;
+        line-height: 1.2em;
+    }
+
+    .bas-features-container .about-us-features {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .getInTouchSection.bas .contact-input-pair {
+        flex-direction: column;
+    }
+
+    .forgotPasswordContainer {
+        padding-bottom: 150px;
+    }
+
+    .aboutUsMainContainer.bas {
+        width: 95%;
+        padding-top: 50px;
+    }
+
+    .getInTouchSection.bas {
+        width: 95%;
+    }
+
+    .bas-features-container .about-us-features {
+        padding: 0;
+    }
+
+}

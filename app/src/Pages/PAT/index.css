@@ -1,0 +1,58 @@
+.pap-section {
+    position: relative;
+}
+
+
+.pap-info-container {
+    width: 80%;
+    margin: auto;
+    padding: 100px 0px;
+    padding-bottom: 100px;
+    color: var(--secondary-color);
+}
+
+.pap-title-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pap-title-card h1 {
+    font-size: 64px;
+}
+
+.pap-title-card p {
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.pap-definition {
+    padding-left: 50px;
+}
+
+.pap-definition span {
+    font-weight: 600;
+}
+
+.pap-info-container li span {
+    font-weight: 600;
+}
+
+.bas-conatct-info.pap {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.tou-span span {
+    font-weight: 600;
+}
+
+.pap-info-container p {
+    text-align: justify;
+}
+
+@media(max-width: 850px) {
+    .pap-info-container {
+        padding-bottom: 200px;
+    }
+}

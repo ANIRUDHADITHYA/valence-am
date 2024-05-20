@@ -1,0 +1,229 @@
+/**********sidebar**********/
+
+.sign-in-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 20;
+    left: 150vw;
+    transition: left 0.5s ease-out;
+}
+
+.sign-in-sidebar.open {
+    left: 0;
+}
+
+.sign-in-container {
+    width: 600px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 45px 60px;
+}
+
+.signInBarContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.signInBarContainer .signInHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
+.signInHeader .closeButton {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.closeButton span {
+    color: var(--secondary-color);
+    font-size: 2.5em;
+    font-weight: 300;
+    margin-bottom: 3px;
+}
+
+.closeButton p {
+    padding: 2px 8px;
+    font-size: 0.825em;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 0px;
+}
+
+.sign-up-p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.signInBarContainer .signInInput {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 0px 40px;
+}
+
+.signInBarContainer .signInInput button {
+    padding: 18px 0px;
+    margin: 18px 0px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.signInBarContainer .signInInput button:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+    color: #fff;
+}
+
+.signInBarContainer input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--secondary-ultra-lite-color);
+    text-indent: 2px;
+    color: var(--secondary-color);
+    width: 100%;
+    border-radius: 0px;
+}
+
+.signInBarContainer input:hover {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.signInBarContainer input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.signInBtn {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid var(--secondary-color);
+}
+
+.signUpBtn {
+    background-color: #fff;
+    color: var(--secondary-color);
+    text-decoration: none;
+    border: 1px solid var(--secondary-color);
+}
+
+.lostPass {
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    height: 80px;
+}
+
+.lostPass a,
+.lostPass button {
+    text-decoration: none;
+    padding-bottom: 2px;
+    border: none;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    font-weight: 700;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.lostPass a:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.lostPass button:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.rememberMe {
+    display: flex;
+    margin: 10px 0px;
+    justify-content: left;
+}
+
+.rememberMe input {
+    flex: 0;
+}
+
+.rememberMe label {
+    flex: 1;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+/* Check button styles */
+.rememberMe input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 8px solid var(--secondary-ultra-lite-color);
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+    height: 5px;
+    margin: auto;
+}
+
+.rememberMe input[type="checkbox"]:checked::before {
+    content: '\2713';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.rememberMe input[type="checkbox"]:checked {
+    border: 8px solid #fff;
+    height: 5px;
+    outline: 1px solid var(--secondary-color);
+}
+
+.hv-underline.opx::after {
+    height: 2.5px;
+}
+
+@media(max-width:700px) {
+    .sign-in-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 45px 40px;
+    }
+}
+
+@media(max-width:550px) {
+    .sign-in-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 25px 15px;
+    }
+
+    .lostPass {
+        height: 200px;
+    }
+}

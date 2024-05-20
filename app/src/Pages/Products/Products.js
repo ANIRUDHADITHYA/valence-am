@@ -1,0 +1,168 @@
+import OutsideClickHandler from "react-outside-click-handler";
+import { useState } from "react";
+import Footer from "../../Components/Footer/Footer";
+import allProducts from "../../JSON/AllProducts";
+import Navbar from "../../Components/Navbar/Navbar";
+import "./Products.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+const Products = () => {
+
+    const [everythingClick, setEverythingClick] = useState(false);
+    const [categoriesClick, setCategoriesClick] = useState(false);
+
+    const location = useLocation();
+    const history = useNavigate();
+    const params = new URLSearchParams(location.search);
+
+    const [category, setCategory] = useState(0);
+    const [process, setProcess] = useState(0);
+
+    const processes =
+    {
+        0: "Autoclave & Oven",
+        1: "Low Temperature & Infusion",
+    }
+    const categories = {
+        0: "everything",
+        1: "Vacuum Bagging Films",
+        2: "Release Films",
+        3: "Breathers & Bleeders",
+        4: "Peel Ply",
+        5: "Sealant Tapes",
+        6: "Pressure Sensitive Tapes",
+        7: "Vacuum Valves & Hoses",
+        8: "Resin Flow Mesh",
+        9: "Infusion Tooling & Accessories",
+        10: "Infusion Flow & Control Systems",
+
+    }
+
+    useEffect(() => {
+        const categoryParam = params.get("category");
+        const processParam = params.get("process");
+
+        if (categoryParam !== null) {
+            setCategory(parseInt(categoryParam));
+        } else {
+            setCategory(0);
+        }
+
+        if (processParam !== null) {
+            setProcess(parseInt(processParam));
+        } else {
+            setProcess(0);
+        }
+
+        if (categoryParam > 7 && processParam < 1) {
+            history("/products")
+        }
+        if (categoryParam < 0 || processParam < 0) {
+            history("/products")
+        }
+        if (categoryParam > 10 || processParam > 1) {
+            history("/products")
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params.get("category"), params.get("process")]);
+
+    const filteredProducts = allProducts.filter(product => {
+        const categoryCondition = category === 0 || product.category.id === category;
+        const processCondition = product.process.some(product_process => product_process.id === process);
+        return categoryCondition && processCondition;
+    });
+
+    console.log(filteredProducts);
+
+
+    return (
+        <div className="products-section">
+            <Navbar />
+            <div className="products-container">
+                <h1 className="product-title">Products</h1>
+                <div className="product-header-container">
+                    <h2>You're looking for
+                        <span class="product-dropdown">
+
+                            <OutsideClickHandler onOutsideClick={() => { setEverythingClick(false) }}>
+                                <button class="product-dropbtn" onClick={() => { setEverythingClick(true) }}><h2>{categories[category]} <i class="fa-solid fa-angle-down"></i></h2></button>
+                            </OutsideClickHandler>
+                            <span class={everythingClick ? "product-dropdown-content active" : "product-dropdown-content"}>
+                                <div onClick={() => { setCategory(0) }} className={category === 0 ? "product-dropdown-selected" : ""}>{categories[0]}</div>
+                                <div onClick={() => { setCategory(1) }} className={category === 1 ? "product-dropdown-selected" : ""}>{categories[1]}</div>
+                                <div onClick={() => { setCategory(2) }} className={category === 2 ? "product-dropdown-selected" : ""}>{categories[2]}</div>
+                                <div onClick={() => { setCategory(3) }} className={category === 3 ? "product-dropdown-selected" : ""}>{categories[3]}</div>
+                                <div onClick={() => { setCategory(4) }} className={category === 4 ? "product-dropdown-selected" : ""}>{categories[4]}</div>
+                                <div onClick={() => { setCategory(5) }} className={category === 5 ? "product-dropdown-selected" : ""}>{categories[5]}</div>
+                                <div onClick={() => { setCategory(6) }} className={category === 6 ? "product-dropdown-selected" : ""}>{categories[6]}</div>
+                                <div onClick={() => { setCategory(7) }} className={category === 7 ? "product-dropdown-selected" : ""}>{categories[7]}</div>
+                                {process === 1 && <div onClick={() => { setCategory(8) }} className={category === 8 ? "product-dropdown-selected" : ""}>{categories[8]}</div>}
+                                {process === 1 && <div onClick={() => { setCategory(9) }} className={category === 9 ? "product-dropdown-selected" : ""}>{categories[9]}</div>}
+                                {process === 1 && <div onClick={() => { setCategory(10) }} className={category === 10 ? "product-dropdown-selected" : ""}>{categories[10]}</div>}
+                            </span>
+
+                        </span>
+
+                        suited for
+
+                        <span class="product-dropdown">
+                            <OutsideClickHandler onOutsideClick={() => { setCategoriesClick(false) }}>
+                                <button class="product-dropbtn" onClick={() => { setCategoriesClick(true) }}><h2>{processes[process]} <i class="fa-solid fa-angle-down"></i></h2></button>
+                            </OutsideClickHandler>
+                            <span class={categoriesClick ? "product-dropdown-content active" : "product-dropdown-content"}>
+                                <div onClick={() => { setProcess(0) }} className={process === 0 ? "product-dropdown-selected" : ""}>{processes[0]}</div>
+                                <div onClick={() => { setProcess(1) }} className={process === 1 ? "product-dropdown-selected" : ""}>{processes[1]}</div>
+                            </span>
+
+                        </span>
+
+                        process
+                    </h2>
+                </div>
+
+                <div className="product-card-container">
+                    {filteredProducts.length ? (
+                        filteredProducts.map(product => (
+
+                            <a className="product-card" key={product.index} href={`/products/${product.product_id}`}>
+                                <figure>
+                                    <div className="carousel">
+                                        <div className="carousel__images" >
+                                            <img src={`/Asserts/Products/${product.product_image}.jpg`} alt="" />
+                                        </div>
+                                    </div>
+                                </figure>
+                                <section className="product-card-space">
+                                </section>
+                                <section className="details">
+                                    <div className="min-details">
+                                        <h1>{product.display_title}</h1>
+                                        <h2>{product.category.name}</h2>
+                                        {product.temperature ? <div className="details_temp-container">
+                                            <div className="detail_image-wrapper">
+                                                <i class="fa-solid fa-temperature-full"></i>
+                                            </div>
+                                            {product.temperature}
+                                        </div> : <div className="details_temp-container"><div className="detail_image-wrapper"></div></div>}
+                                    </div>
+                                    <a href={`/products/${product.product_id}?process=${process}`} className="productToCart">View Details</a>
+                                </section>
+                            </a>
+
+                        ))
+                    ) : (
+                        <div className="filter-no-pro">
+                            <h1>Sorry! No Products Found.</h1>
+                        </div>
+                    )}
+                </div>
+            </div>
+            <Footer />
+        </div >
+    )
+}
+
+
+export default Products;
