@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./SignSlider.css";
+import axios from 'axios';
 
 export default function SignSlider(props) {
 
@@ -14,6 +15,31 @@ export default function SignSlider(props) {
             setSignInOpen(false);
         }
     }
+
+    const [signinValues, setSigninValues] = useState({
+        email: "",
+        password: "",
+        remember_me: false,
+    });
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setSigninValues(prevState => ({
+            ...prevState,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:4000/auth/signin', signinValues, { withCredentials: true });
+            console.log(response.data); // Handle response from server
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     return (
         <div>
             <div className={isSignInOpen ? `sign-in-sidebar open` : `sign-in-sidebar`} onClick={handleSidebarClose}>
@@ -23,25 +49,48 @@ export default function SignSlider(props) {
                             {signIn ? <p className='sign-up-p'>Sign In</p> : <p className='sign-up-p'>Sign Up</p>}
                             <div className="closeButton" onClick={() => setSignInOpen(false)}><p>Close</p> <span> &times;</span></div>
                         </div>
-                        {signIn ? <div className="signInInput">
-                            <div>
-                                <div className="floating-label-group">
-                                    <input type="text" id="email" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Email</label>
+                        {signIn ?
+                            <div className="signInInput">
+                                <div>
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="text"
+                                            id="email"
+                                            className="form-control"
+                                            name="email"
+                                            value={signinValues.email}
+                                            autoComplete="off"
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <label className="floating-label">Email</label>
+                                    </div>
+                                    <div className="floating-label-group bottom">
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            className="form-control"
+                                            autoComplete="off"
+                                            name="password"
+                                            value={signinValues.password}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <label className="floating-label">Password</label>
+                                    </div>
                                 </div>
-                                <div className="floating-label-group bottom">
-                                    <input type="password" id="password" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Password</label>
+                                <div className="rememberMe">
+                                    <input
+                                        type="checkbox"
+                                        name='remember_me'
+                                        checked={signinValues.remember_me}
+                                        onChange={handleChange}
+                                    />
+                                    <label>Remember me</label>
                                 </div>
-                            </div>
-                            <div className="rememberMe">
-                                <input type="checkbox"></input>
-                                <label>Remember me</label>
-                            </div>
-                            {/*loginError && <p className="err-msg-validation">*{loginError}</p>*/}
-                            <button className="signInBtn" >SIGN IN</button>
-                            <button className="signUpBtn" onClick={() => { setSignIn(false) }} >BECOME A VALENCIAN!</button>
-                        </div> :
+                                <button className="signInBtn" onClick={handleSubmit}>SIGN IN</button>
+                                <button className="signUpBtn" onClick={() => { setSignIn(false) }} >BECOME A VALENCIAN!</button>
+                            </div> :
                             <div className="signInInput">
                                 <div>
                                     <div className="floating-label-group">
@@ -70,9 +119,7 @@ export default function SignSlider(props) {
                                         {/*registerErrors.password && <p className="err-msg-validation">*{registerErrors.password}</p>*/}
                                     </div>
                                     {/*registerErrors.other_error && <p className="err-msg-validation">*{registerErrors.other_error}</p>*/}
-
                                 </div>
-
                                 <button className="signInBtn" >SIGN UP</button>
                             </div>}
                         <div className="lostPass">

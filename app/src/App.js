@@ -10,6 +10,7 @@ import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
 import PrivacyPolicy from './Pages/PAT/PrivacyPolicy';
 import TermsOfUse from './Pages/PAT/TermsOfUse';
+import ResetPassword from './Pages/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/my-cart" exact element={<MyCart />} />
           <Route path="/become-a-supplier" exact element={<BecomeASupplier />} />
           <Route path="/lost-password" exact element={<LostPassword />} />
+          <Route path="/reset-password/:resetToken" exact element={<ResetPassword />} />
           <Route path="/privacy-policy" exact element={<PrivacyPolicy />} />
           <Route path="/terms-of-use" exact element={<TermsOfUse />} />
         </Routes>

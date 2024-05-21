@@ -5,15 +5,20 @@
     "index" : 1,
     "product_id": "VAL_BREATHE",
     "product_name": "VAL BREATHE",
-    "category_id": 1,
+    "category": {
+        "name": "Breathers & Bleeders",
+        "code": 1
+    },
     "process": [
         {
             "index": 1,
-            "id": 0
+            "id": 0,
+            "name": "Autoclave & Oven"
         },
         {
             "index": 2,
-            "id": 1
+            "id": 1,
+            "name": "Low Temperature & Infusion"
         }
     ],
     "product_discription": "This high-quality 100% polyester breather can conform to complex laminate shapes and boasts excellent ventilation, making it suitable for vacuum and autoclave pressure processing.",
@@ -25,14 +30,14 @@
             "index": 1,
             "id" : "weight",
             "name": "Weight",
-            "type": "Number",
+            "type": "number",
             "unit": "g/m²"
         },
         {
             "index": 2,
             "id": "roll_size",
             "name": "Roll Size",
-            "type": "String",
+            "type": "string",
             "unit": ""
         }
     ],
@@ -40,50 +45,100 @@
         {
             "index": 1,
             "id": 1,
-            "value": {
-                "weight": "100", 
-                "roll_size": "W: 1.5 M X L: 100 M"
-            }
+            "weight": 100, 
+            "roll_size": "W: 1.5 M X L: 100 M"
         },
         {
             "index": 2,
             "id": 2,
-            "values": {
-                "weight": "120", 
-                "roll_size": "W: 1.5 M X L: 100 M"
-            }
+            "weight": 120, 
+            "roll_size": "W: 1.5 M X L: 100 M"
         },
         {
             "index": 3,
             "id": 3,
-            "values": { 
-                "weight": "150", 
-                "roll_size": "W: 1.5 M X L: 100 M"
-            }
+            "weight": 150, 
+            "roll_size": "W: 1.5 M X L: 100 M"
         },
         {
             "index": 4,
             "id": 4,
-            "values": { 
-                "weight": "230", 
-                "roll_size": "W: 1.5 M X L: 50 M"
-            }
+            "weight": 230, 
+            "roll_size": "W: 1.5 M X L: 50 M"
         },
         {
             "index": 5,
             "id": 5,
-            "value": { 
-                "weight": "300", 
-                "roll_size": "W: 1.5 M X L: 50 M"
-            }
+            "weight": 300, 
+            "roll_size": "W: 1.5 M X L: 50 M"
         },
         {
             "index": 6,
             "id": 6,
-            "value": { 
-                "weight": 400, 
-                "roll_size": "W: 1.5 M X L: 50 M"
-            }
+            "weight": 400, 
+            "roll_size": "W: 1.5 M X L: 50 M"
+        }
+    ]
+},
+{
+    "index" : 2,
+    "product_id": "VAL_GCORE",
+    "product_name": "VAL G CORE",
+    "category": {
+        "name": "Breathers & Bleeders",
+        "code": 1
+    },
+    "process": [
+        {
+            "index": 1,
+            "id": 1,
+            "name": "Low Temperature & Infusion"
+        }
+    ],
+    "product_discription": "The G-Core is a non-woven core material made of foamed micro hollow pearls reinforced with short fibers. When impregnated with polyester resin, it becomes smooth and flexible, suitable for use as a core layer in glass fiber-polyester laminates. It's designed to absorb resin efficiently and maintains good tensile strength even when wet.The G-Core is a non-woven core material made of foamed micro hollow pearls reinforced with short fibers. When impregnated with polyester resin, it becomes smooth and flexible, suitable for use as a core layer in glass fiber-polyester laminates. It's designed to absorb resin efficiently and maintains good tensile strength even when wet.",
+    "product_image": "VAL_GCORE",
+    "display_title": "VAL G CORE",
+    "temperature": 120,
+    "physical_dimensions": [
+        {
+            "index": 1,
+            "id" : "weight",
+            "name": "Weight",
+            "type": "number",
+            "unit": "g/m²"
+        },
+        {
+            "index": 2,
+            "id": "roll_size",
+            "name": "Roll Size",
+            "type": "string",
+            "unit": ""
+        }
+    ],
+    "dimension_values": [
+        {
+            "index": 1,
+            "id": 1,
+            "weight": 55, 
+            "roll_size": "W: 1 M X T: 2 MM X L: 80 M"
+        },
+        {
+            "index": 2,
+            "id": 2,
+            "weight": 80, 
+            "roll_size": "W: 1 M X T: 3 MM X L: 50 M"
+        },
+        {
+            "index": 3,
+            "id": 3,
+            "weight": 105, 
+            "roll_size": "W: 1 M X T: 4 MM X L: 40 M"
+        },
+        {
+            "index": 4,
+            "id": 4,
+            "weight": 125, 
+            "roll_size": "W: 1 M X T: 5 MM X L: 30 M"
         }
     ]
 }

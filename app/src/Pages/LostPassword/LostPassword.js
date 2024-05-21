@@ -7,7 +7,7 @@ const LostPassword = () => {
         <div className="forgotPasswordSection">
             <Navbar />
             <div className="forgotPasswordContainer">
-                <h1>Lost password</h1>
+                <h1>Lost Password</h1>
                 <p>
                     Lost your password? Please enter your registered email address. You will receive a link to create a new password via email.
                 </p>

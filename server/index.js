@@ -1,7 +1,10 @@
 import express from "express";
-import productsRouters from "./routes/products.route.js"
 import connectDB from "./lib/db.js";
 import dotenv from 'dotenv';
+import { ProductRouter } from "./routes/products.route.js";
+import { UserRouter } from "./routes/user.route.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config()
 
@@ -9,14 +12,18 @@ const app = express()
 
 
 app.use(express.json());
+app.use(cors({ origin: [process.env.PRIMARY_HOST_URL], credentials: true }));
+app.use(cookieParser({ origin: [process.env.PRIMARY_HOST_URL], credentials: true }));
 app.use(express.urlencoded({ extended: true }));
 
 connectDB();
 
 
-//Middleware
-app.use('/api/products', productsRouters)
+//Middleware for User
+app.use('/auth', UserRouter)
 
+//Middleware for Product
+app.use('/api/products', ProductRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at http://localhost:${process.env.PORT}`)

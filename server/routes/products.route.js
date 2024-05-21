@@ -13,4 +13,5 @@ router.get("/product/:product_id", getProductByProductID);
 router.post("/add-product", addProduct);
 
 
-export default router;
+
+export { router as ProductRouter };
