@@ -72,16 +72,13 @@ const Contact = () => {
                                             </tr>
                                             <tr>
                                                 <td className='contactTableSubHeading' valign="top"><h5>PHONE</h5></td>
-                                                <td><p><a href="tel:+919353784714">+91 9353 78 4714</a><br></br>
-                                                    {/*<a href="tel:+919353067232">+91 9353 06 7232</a>*/}</p></td>
+                                                <td><p><a href="tel:+919353784714">+91 9353 78 4714</a></p></td>
                                             </tr>
                                             <tr>
                                                 <td className='contactTableSubHeading' valign="top"><h5>EMAIL</h5></td>
                                                 <td>
                                                     <p>
                                                         <a href="mailto:enquiry@valence-am.com">enquiry@valence-am.com</a>
-                                                        <br></br>
-                                                        {/*<a href="mailto:contact@valence-am.com">contact@valence-am.com</a>*/}
                                                     </p>
                                                 </td>
                                             </tr>

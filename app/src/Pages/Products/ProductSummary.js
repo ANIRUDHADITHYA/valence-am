@@ -1,15 +1,19 @@
 import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
-import allProducts from "../../JSON/AllProducts";
 import "./ProductSummary.css";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useEffect } from "react";
+import { categories } from "../../Utlis/globalVariables.js"
+import { useContext } from "react";
+import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 
 const ProductSummary = () => {
+
     const location = useLocation();
     const params = new URLSearchParams(location.search);
+    const { allProducts } = useContext(ProductsContext);
 
     const [showCartNotifier, setShowCartNotifier] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -69,7 +73,6 @@ const ProductSummary = () => {
             });
         };
 
-
         return (
             <>
                 {isPreviousSelected && (
@@ -118,7 +121,7 @@ const ProductSummary = () => {
                         product_id: filterProduct.product_id,
                         product_image: filterProduct.product_image,
                         product_name: filterProduct.display_title,
-                        product_category: filterProduct.category,
+                        product_category: filterProduct.category_id,
                         product_temperature: filterProduct.temperature,
                         quantity: quantity,
                         product_properties: property
@@ -130,7 +133,7 @@ const ProductSummary = () => {
                     product_id: filterProduct.product_id,
                     product_image: filterProduct.product_image,
                     product_name: filterProduct.display_title,
-                    product_category: filterProduct.category,
+                    product_category: filterProduct.category_id,
                     product_temperature: filterProduct.temperature,
                     quantity: quantity,
                     product_properties: property
@@ -159,14 +162,14 @@ const ProductSummary = () => {
                 <div className="product-summary-container">
                     <div className="product-summary-header">
                         <ul className="ps-nav-container">
-                            <li><a href="/">Home</a><i class="fa-solid fa-angle-right"></i></li>
-                            <li><a href="/products">Products</a><i class="fa-solid fa-angle-right"></i></li>
-                            <li><a href={`/products?process=${currentProcess}`}>{filterProduct.category.name}</a><i class="fa-solid fa-angle-right"></i></li>
-                            <li><a href="#">{filterProduct.display_title}</a></li>
+                            <li><Link to="/">Home</Link><i class="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="/products">Products</Link><i class="fa-solid fa-angle-right"></i></li>
+                            <li><Link to={`/products?process=${currentProcess}`}>{categories[filterProduct.category_id]}</Link><i class="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="#">{filterProduct.display_title}</Link></li>
                         </ul>
                         <div className="ps-nav-container-pn">
-                            <a href="/#">PREV</a>
-                            <a href="/#">NEXT</a>
+                            <Link to="/#">PREV</Link>
+                            <Link to="/#">NEXT</Link>
                         </div>
                     </div>
                     <div className="ps-details-container">
@@ -182,7 +185,7 @@ const ProductSummary = () => {
                                 <div className="ps-details-data-header">
                                     <div className="ps-details-data-title">
                                         <h1>{filterProduct.display_title}</h1>
-                                        <h2>{filterProduct.category.name}</h2>
+                                        <h2>{categories[filterProduct.category_id]}</h2>
                                     </div>
                                     {filterProduct.temperature ? <div className="ps-details-data-temperature">
                                         <div className="ps-details-data-temperature-image-wrapper">
@@ -205,10 +208,10 @@ const ProductSummary = () => {
                                                             return true;
                                                         } else {
                                                             const prevValue = property[index - 1];
-                                                            return prevValue && value[filterProduct.physical_dimensions[index - 1].id] === prevValue.value;
+                                                            return prevValue && value.values[filterProduct.physical_dimensions[index - 1].id] === prevValue.value;
                                                         }
                                                     })
-                                                    .map((value) => value[dimension.id])
+                                                    .map((value) => value.values[dimension.id])
                                                     .filter((value, idx, self) => self.indexOf(value) === idx)
                                                 }
                                                 currentValue={property[index]}
@@ -248,7 +251,7 @@ const ProductSummary = () => {
                     <h2>"{filterProduct?.display_title}" has been added to your cart.</h2>
                 </div>
                 <div className="cart-notifier-end">
-                    <a href="/my-cart">VIEW CART</a>
+                    <Link to="/my-cart">VIEW CART</Link>
                     <i className="fa-solid fa-xmark" onClick={() => { setShowCartNotifier(false) }}></i>
                 </div>
             </div>

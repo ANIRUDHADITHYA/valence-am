@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-bootstrap/Carousel';
 import "./HomeCarousel.css";
+import { Link } from 'react-router-dom';
 
 export default function HomeCarousel() {
     return (
@@ -21,7 +22,7 @@ export default function HomeCarousel() {
                     <Carousel.Caption className='mid'>
                         <div class="slide-right">
                             <h2>Autoclave <span className='span-and' style={{ fontFamily: "of", paddingRight: "5px" }}>&</span> Oven</h2>
-                            <a href="/products?process=0">Discover Now</a>
+                            <Link to="/products?process=0">Discover Now</Link>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -34,7 +35,7 @@ export default function HomeCarousel() {
                     <Carousel.Caption>
                         <div class="slide-right">
                             <h2>Low Temperature <span className='span-and' style={{ fontFamily: "of", paddingRight: "5px" }}>&</span> Infusion</h2>
-                            <a href="/products?process=1">Discover Now</a>
+                            <Link to="/products?process=1">Discover Now</Link>
                         </div>
                     </Carousel.Caption>
                 </Carousel.Item>

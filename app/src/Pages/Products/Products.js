@@ -1,13 +1,17 @@
 import OutsideClickHandler from "react-outside-click-handler";
 import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
-import allProducts from "../../JSON/AllProducts";
+import { processes, categories } from "../../Utlis/globalVariables.js"
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Products.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 
 const Products = () => {
+
+    const { allProducts, loading } = useContext(ProductsContext);
 
     const [everythingClick, setEverythingClick] = useState(false);
     const [categoriesClick, setCategoriesClick] = useState(false);
@@ -19,25 +23,6 @@ const Products = () => {
     const [category, setCategory] = useState(0);
     const [process, setProcess] = useState(0);
 
-    const processes =
-    {
-        0: "Autoclave & Oven",
-        1: "Low Temperature & Infusion",
-    }
-    const categories = {
-        0: "everything",
-        1: "Vacuum Bagging Films",
-        2: "Release Films",
-        3: "Breathers & Bleeders",
-        4: "Peel Ply",
-        5: "Sealant Tapes",
-        6: "Pressure Sensitive Tapes",
-        7: "Vacuum Valves & Hoses",
-        8: "Resin Flow Mesh",
-        9: "Infusion Tooling & Accessories",
-        10: "Infusion Flow & Control Systems",
-
-    }
 
     useEffect(() => {
         const categoryParam = params.get("category");
@@ -69,17 +54,14 @@ const Products = () => {
     }, [params.get("category"), params.get("process")]);
 
     const filteredProducts = allProducts.filter(product => {
-        const categoryCondition = category === 0 || product.category.id === category;
+        const categoryCondition = category === 0 || product.category_id === category;
         const processCondition = product.process.some(product_process => product_process.id === process);
         return categoryCondition && processCondition;
     });
 
-    console.log(filteredProducts);
-
-
     return (
         <div className="products-section">
-            <Navbar />
+            < Navbar />
             <div className="products-container">
                 <h1 className="product-title">Products</h1>
                 <div className="product-header-container">
@@ -139,7 +121,7 @@ const Products = () => {
                                 <section className="details">
                                     <div className="min-details">
                                         <h1>{product.display_title}</h1>
-                                        <h2>{product.category.name}</h2>
+                                        <h2>{categories[product.category_id]}</h2>
                                         {product.temperature ? <div className="details_temp-container">
                                             <div className="detail_image-wrapper">
                                                 <i class="fa-solid fa-temperature-full"></i>
@@ -147,7 +129,7 @@ const Products = () => {
                                             {product.temperature}
                                         </div> : <div className="details_temp-container"><div className="detail_image-wrapper"></div></div>}
                                     </div>
-                                    <a href={`/products/${product.product_id}?process=${process}`} className="productToCart">View Details</a>
+                                    <Link to={`/products/${product.product_id}?process=${process}`} className="productToCart">View Details</Link>
                                 </section>
                             </a>
 

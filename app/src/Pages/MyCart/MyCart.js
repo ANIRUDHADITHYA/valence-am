@@ -4,11 +4,18 @@ import Navbar from "../../Components/Navbar/Navbar";
 import "./MyCart.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../ContextAPI/AuthContext";
+import toast from "react-hot-toast";
+import { categories } from "../../Utlis/globalVariables.js"
 
 const MyCart = () => {
     const [cartValues, setCartValues] = useState([]);
     const [loader, setLoader] = useState(false);
     const [showThankyou, setShowThankyou] = useState(false);
+    const { user } = useContext(AuthContext);
+    const [openSignslider, setOpenSignSlider] = useState(false);
+    const [orderId, setOrderID] = useState("")
 
 
     useEffect(() => {
@@ -59,25 +66,41 @@ const MyCart = () => {
     }
 
     const getPrice = async () => {
-        setLoader(true);
-        try {
-            const response = await Axios.post("http://localhost:4000/api/orders/create-order", { cartValues }, {
-                withCredentials: true,
-            });
-            console.log("Price received:", response.data);
-            setLoader(false);
-            setShowThankyou(true)
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching price:", error);
-            setLoader(false);
+        if (user) {
+            setLoader(true);
+            try {
+                const response = await Axios.post("http://localhost:4000/api/orders/create-order", { cartValues }, {
+                    withCredentials: true,
+                });
+                console.log("Price received:", response.data);
+                setLoader(false);
+                handleClearCart();
+                setShowThankyou(true)
+                setOrderID(response.data.order_id)
+            } catch (error) {
+                console.error("Error fetching price:", error);
+                setLoader(false);
+            }
+        }
+        else {
+            setOpenSignSlider(true)
+            toast.custom((t) => (
+                <div
+                    className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+                >
+                    <div className='app-toaster red'>
+                        <i className="fa-regular fa-circle-xmark"></i>
+                        <h1>{'Login to Get Price Details.'}</h1>
+                    </div>
+                </div>
+            ))
         }
     }
 
 
     return (
         <div className="cart-section">
-            <Navbar />
+            <Navbar openSignSlider={openSignslider} />
             <div className="cart-container-main">
                 <p>Cart</p>
                 <div style={{ overflowX: "auto" }} className="cart-table-wrap">
@@ -99,7 +122,7 @@ const MyCart = () => {
                                         <td>
                                             <div className="prod-disc-table">
                                                 <Link to={`/products/${cartItem.product_id}`}><h1>{cartItem.product_name}</h1></Link>
-                                                <h2>{cartItem.product_category.name}</h2>
+                                                <h2>{categories[cartItem.product_category_id]}</h2>
                                                 {cartItem.product_temperature ? <h5 key={index}><b>Peak Temperature:</b> {cartItem.product_temperature}</h5> : ""}
                                                 {cartItem.product_properties.map((prop, index) => (
                                                     <h5 key={index}><b>{prop.property_name}:</b> {prop.value}</h5>
@@ -127,7 +150,7 @@ const MyCart = () => {
                                         <td colSpan={5} style={{ borderBottom: "none" }}></td>
                                     </tr>
                                     <tr className="no-product-tr">
-                                        <td colSpan={5} style={{ borderBottom: "none" }} className="no-products">No Products in the Cart. <a href="/products">Shop Now</a></td>
+                                        <td colSpan={5} style={{ borderBottom: "none" }} className="no-products">No Products in the Cart. <Link to="/products">Shop Now</Link></td>
                                     </tr>
                                     <tr className="no-product-br">
                                         <td colSpan={5} className="no-products"></td>
@@ -158,11 +181,12 @@ const MyCart = () => {
                     showThankyou ?
                         <div className="get-price-card-container">
                             <div className="get-price-card">
-                                <p className="get-price-header" onClick={() => { handleClearCart(); window.location.reload() }}>Close <span> &times;</span></p>
+                                <p className="get-price-header" onClick={() => { window.location.reload() }}>Close <span> &times;</span></p>
                                 <div className="get-price-content">
                                     <h1>Thank You!</h1>
                                     <p>Your exclusive offer and tailored requirements are about to hit your
                                         inbox – keep an eye out for them in your registered email!</p>
+                                    <p><b>Your Order ID is {orderId}</b></p>
                                 </div>
                             </div>
                         </div> : "" : ""

@@ -8,10 +8,9 @@ import ValidateSignin from '../../Utlis/ValidateSignin';
 
 export default function SignSlider(props) {
 
-    const { isSignInOpen, setSignInOpen } = props;
+    const { isSignInOpen, setSignInOpen, openSignSlider } = props;
 
     const [signIn, setSignIn] = useState(true);
-
 
 
     const handleSidebarClose = (event) => {
@@ -30,7 +29,10 @@ export default function SignSlider(props) {
         if (signinResponseMessage.status) {
             window.location.reload()
         }
-    }, [signupResponseMessage, signinResponseMessage])
+        if (openSignSlider) {
+            setSignInOpen(true)
+        }
+    }, [signupResponseMessage, signinResponseMessage, openSignSlider])
     return (
         <div>
 

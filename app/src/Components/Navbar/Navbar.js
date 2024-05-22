@@ -6,7 +6,9 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../ContextAPI/AuthContext';
 
-export default function Navbar() {
+export default function Navbar(props) {
+
+    const { openSignSlider } = props;
 
     const [isSignInOpen, setSignInOpen] = useState(false);
 
@@ -25,6 +27,7 @@ export default function Navbar() {
             setCartValues(parsedCartValues);
         }
     }, [localStorage.getItem('cartValues')]);
+
 
     return (
         <>
@@ -98,7 +101,7 @@ export default function Navbar() {
                         <span className={cartValues.length ? "cart-item-count blue" : "cart-item-count"}>{cartValues.length}</span>
                     </div>
                 </div >
-                <SignSlider setSignInOpen={setSignInOpen} isSignInOpen={isSignInOpen} />
+                <SignSlider setSignInOpen={setSignInOpen} isSignInOpen={isSignInOpen} openSignSlider={openSignSlider} />
             </div >
             <OutsideClickHandler onOutsideClick={() => { setMobileNavbar(false) }}>
                 <div className='nav-mobile-section'>
@@ -138,7 +141,7 @@ export default function Navbar() {
                                 <p onClick={() => { setSignInOpen(true); setMobileNavbar(false) }}>Sign In</p>}
                         </div>
                     </div>
-                    <SignSlider setSignInOpen={setSignInOpen} isSignInOpen={isSignInOpen} />
+                    <SignSlider setSignInOpen={setSignInOpen} isSignInOpen={isSignInOpen} openSignSlider={openSignSlider} />
                 </div>
             </OutsideClickHandler>
         </>

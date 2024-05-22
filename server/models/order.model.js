@@ -9,7 +9,7 @@ const productPropertySchema = new Schema({
 const orderSchema = new Schema({
     product_id: String,
     quantity: Number,
-    product_category: String,
+    product_category: Number,
     product_properties: [productPropertySchema]
 });
 
@@ -17,7 +17,7 @@ const OrderSchema = new Schema({
     user: { type: String, required: true },
     orders: [orderSchema],
     timestamp: { type: Date, default: Date.now },
-    order_id: { type: String, required: true },
+    order_id: { type: Number, required: true },
     order_status: { type: String, default: "In Enquiry" }
 });
 

@@ -39,7 +39,7 @@ export const createOrder = async (req, res) => {
         const orders = cartValues.map(cartItem => ({
             product_id: cartItem.product_id,
             quantity: cartItem.quantity,
-            product_category: cartItem.quantity,
+            product_category: cartItem.product_category,
             product_properties: cartItem.product_properties
         }));
 
@@ -54,7 +54,7 @@ export const createOrder = async (req, res) => {
 
         const emailText = `We have received your order with ID ${order_id}. Order details: ${JSON.stringify(orders)}`;
         await sendEmail(req.user.email, 'Valence | Order Confirmation', emailText);
-        return res.status(201).json({ status: true, message: 'Order created successfully', order: newOrder });
+        return res.status(201).json({ status: true, message: 'Order created successfully', order_id: order_id });
     } catch (error) {
         console.error('Error creating order:', error);
         return res.status(500).json({ status: false, message: 'Error creating order', error: error.message });
