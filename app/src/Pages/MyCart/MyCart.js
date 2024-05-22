@@ -3,9 +3,13 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./MyCart.css";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 const MyCart = () => {
     const [cartValues, setCartValues] = useState([]);
+    const [loader, setLoader] = useState(false);
+    const [showThankyou, setShowThankyou] = useState(false);
+
 
     useEffect(() => {
         const existingCartValuesJSON = localStorage.getItem('cartValues');
@@ -53,6 +57,23 @@ const MyCart = () => {
         localStorage.removeItem('cartValues');
         setCartValues(updatedCartValues);
     }
+
+    const getPrice = async () => {
+        setLoader(true);
+        try {
+            const response = await Axios.post("http://localhost:4000/api/orders/create-order", { cartValues }, {
+                withCredentials: true,
+            });
+            console.log("Price received:", response.data);
+            setLoader(false);
+            setShowThankyou(true)
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching price:", error);
+            setLoader(false);
+        }
+    }
+
 
     return (
         <div className="cart-section">
@@ -120,7 +141,7 @@ const MyCart = () => {
                                     <td style={{ borderBottom: "none" }}></td>
                                     <td style={{ borderBottom: "none" }} className="no-td"></td>
                                     <td style={{ borderBottom: "none", paddingTop: "30px", textAlign: "center", whiteSpace: "nowrap" }} className="prod-clear-btn" ><span className="noBorder" onClick={handleClearCart}>CLEAR CART</span></td>
-                                    <td style={{ borderBottom: "none", paddingTop: "30px", textAlign: "center", whiteSpace: "nowrap" }}><span className="noBorder-getBtn" >GET PRICE</span></td>
+                                    <td style={{ borderBottom: "none", paddingTop: "30px", textAlign: "center", whiteSpace: "nowrap" }}><span className="noBorder-getBtn" onClick={getPrice}>GET PRICE</span></td>
                                 </tr> : ""}
                         </tbody>
                     </table>
@@ -128,16 +149,25 @@ const MyCart = () => {
             </div>
             <Footer />
 
-            <div className="get-price-card-container">
-                <div className="get-price-card">
-                    <p className="get-price-header">Close <span> &times;</span></p>
-                    <div className="get-price-content">
-                        <h1>Thank You!</h1>
-                        <p>Your exclusive offer and tailored requirements are about to hit your
-                            inbox – keep an eye out for them in your registered email!</p>
-                    </div>
-                </div>
-            </div>
+            {(loader || showThankyou) ?
+                loader ?
+
+                    <div className="get-price-card-container loader">
+                        <p className="cart-loader">Please wait. While we process your request...</p>
+                    </div> :
+                    showThankyou ?
+                        <div className="get-price-card-container">
+                            <div className="get-price-card">
+                                <p className="get-price-header" onClick={() => { handleClearCart(); window.location.reload() }}>Close <span> &times;</span></p>
+                                <div className="get-price-content">
+                                    <h1>Thank You!</h1>
+                                    <p>Your exclusive offer and tailored requirements are about to hit your
+                                        inbox – keep an eye out for them in your registered email!</p>
+                                </div>
+                            </div>
+                        </div> : "" : ""
+
+            }
         </div >
     )
 }

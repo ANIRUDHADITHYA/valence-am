@@ -5,6 +5,7 @@ import { ProductRouter } from "./routes/products.route.js";
 import { UserRouter } from "./routes/user.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { OrderRouter } from "./routes/order.route.js";
 
 dotenv.config()
 
@@ -24,6 +25,9 @@ app.use('/auth', UserRouter)
 
 //Middleware for Product
 app.use('/api/products', ProductRouter)
+
+//Middleware for Order
+app.use('/api/orders', OrderRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running at http://localhost:${process.env.PORT}`)
