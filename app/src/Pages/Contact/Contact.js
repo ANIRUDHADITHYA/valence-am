@@ -16,13 +16,15 @@ const Contact = () => {
                 </div>
             </div>
             <div className="contact-gmap">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.154202934989!2d77.60055677457713!3d13.08941191228541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae174d95af27ad%3A0x11ca21cd71d9401!2sValence%20Advanced%20Materials%20Private%20Limited!5e0!3m2!1sen!2sin!4v1715736987990!5m2!1sen!2sin"
-                    style={{ border: 0 }}
-                    allowfullscreen=""
-                    loading="eager"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                {// eslint-disable-next-line
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.154202934989!2d77.60055677457713!3d13.08941191228541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae174d95af27ad%3A0x11ca21cd71d9401!2sValence%20Advanced%20Materials%20Private%20Limited!5e0!3m2!1sen!2sin!4v1715736987990!5m2!1sen!2sin"
+                        style={{ border: 0 }}
+                        allowfullscreen=""
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                }
             </div>
             <div className='contactInformation'>
                 <div className='contactMainContainer'>
@@ -54,9 +56,7 @@ const Contact = () => {
                                                 <td className='contactTableSubHeading' valign="top"><h5>CIN</h5></td>
                                                 <td>
                                                     <p>
-                                                        <a>
-                                                            U51909KA2020PTC132570
-                                                        </a>
+                                                        U51909KA2020PTC132570
                                                     </p>
                                                 </td>
                                             </tr>
@@ -64,9 +64,7 @@ const Contact = () => {
                                                 <td className='contactTableSubHeading' valign="top"><h5>GST</h5></td>
                                                 <td>
                                                     <p>
-                                                        <a>
-                                                            29AAHCV3120A1ZR
-                                                        </a>
+                                                        29AAHCV3120A1ZR
                                                     </p>
                                                 </td>
                                             </tr>

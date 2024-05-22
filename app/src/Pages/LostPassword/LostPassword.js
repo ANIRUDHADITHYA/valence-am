@@ -13,7 +13,7 @@ const LostPassword = () => {
         if (user) {
             signout()
         }
-    }, [user])
+    }, [user, signout])
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,7 +40,7 @@ const LostPassword = () => {
         setIsSubmitting(true);
         try {
             await Axios.post(
-                'http://localhost:4000/auth/forgot-password',
+                `${process.env.REACT_APP_API_HOST_URL}/auth/forgot-password`,
                 { email },
                 { withCredentials: true } // Include credentials in the request
             );

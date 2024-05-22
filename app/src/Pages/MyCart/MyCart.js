@@ -69,10 +69,9 @@ const MyCart = () => {
         if (user) {
             setLoader(true);
             try {
-                const response = await Axios.post("http://localhost:4000/api/orders/create-order", { cartValues }, {
+                const response = await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/api/orders/create-order`, { cartValues }, {
                     withCredentials: true,
                 });
-                console.log("Price received:", response.data);
                 setLoader(false);
                 handleClearCart();
                 setShowThankyou(true)
@@ -137,7 +136,10 @@ const MyCart = () => {
                                             </div>
                                         </td>
                                         <td className="price-tag-img">
-                                            <img src="/Asserts/pricetag.jpeg" alt={`image${index}`} style={{ mixBlendMode: "revert-layer" }} />
+                                            {
+                                                // eslint-disable-next-line
+                                                <img src="/Asserts/pricetag.jpeg" alt={`image${index}`} style={{ mixBlendMode: "revert-layer" }} />
+                                            }
                                         </td>
                                         <td style={{ textAlign: "center" }} className="cart-prod-delete"><i className="fa-solid fa-xmark" id="cart-delete" onClick={() => { handleDelete(cartItem.cart_id) }}></i></td>
                                     </tr>

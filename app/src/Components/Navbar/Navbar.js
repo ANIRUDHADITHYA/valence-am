@@ -26,7 +26,8 @@ export default function Navbar(props) {
             const parsedCartValues = JSON.parse(existingCartValuesJSON);
             setCartValues(parsedCartValues);
         }
-    }, [localStorage.getItem('cartValues')]);
+    },// eslint-disable-next-line react-hooks/exhaustive-deps
+        [localStorage.getItem('cartValues')]);
 
 
     return (

@@ -9,7 +9,7 @@ export const ProductsProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const fetchProducts = async () => {
         try {
-            const response = await Axios.get('http://localhost:4000/api/products');
+            const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/api/products`);
             setAllProducts(response.data.products);
             setLoading(false);
         } catch (error) {

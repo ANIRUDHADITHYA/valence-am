@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     const signout = async () => {
         try {
-            await axios.post('http://localhost:4000/auth/signout', {}, { withCredentials: true });
+            await axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/signout`, {}, { withCredentials: true });
             setUser("");
             window.location.reload();
         } catch (error) {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                const res = await axios.get('http://localhost:4000/auth/verify-user', { withCredentials: true });
+                const res = await axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/verify-user`, { withCredentials: true });
                 if (res.data.status) {
                     setUser(res.data.user.name);
                 } else {

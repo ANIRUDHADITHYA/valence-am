@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Raleway, sans-serif;
+}
+
+:root {
+  --primary-color: #2d4798;
+  --primary-lite-color: #5e7fe1;
+  --primary-ultra-lite-color: #9eb6ff;
+  --secondary-color: #4b4a4c;
+  --secondary-lite-color: #999999;
+  --secondary-ultra-lite-color: #e0e0e0;
+}

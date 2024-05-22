@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export const processes =
 {
     0: "Autoclave & Oven",

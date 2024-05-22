@@ -6,22 +6,34 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const ResetPassword = () => {
-    const { resetToken } = useParams()
+    const { resetToken } = useParams();
     const [isValidToken, setIsValidToken] = useState(false);
-    const [newPassword, setNewPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("");
+    const [error, setError] = useState("");
 
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:4000/auth/reset-password/" + resetToken, {
+
+        if (!newPassword) {
+            setError("Please enter a new password");
+            return;
+        } else if (newPassword.length < 8 || newPassword.length > 12) {
+            setError("Password must be between 8 to 12 characters");
+            return;
+        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}/.test(newPassword)) {
+            setError("Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character");
+            return
+        }
+
+        axios.post(`http://localhost:4000/auth/reset-password/${resetToken}`, {
             newPassword,
         }, { withCredentials: true }).then(response => {
             if (response.data.status) {
-                navigate('/products')
+                alert('Password has been reset successfully. Click OK to navigate to Products.');
+                navigate("/products")
             }
-            console.log(response.data)
         }).catch(error => {
             toast.custom((t) => (
                 <div
@@ -32,10 +44,9 @@ const ResetPassword = () => {
                         <h1>{'Invalid or Expired Link'}</h1>
                     </div>
                 </div>
-            ))
-        })
+            ));
+        });
     };
-
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -43,10 +54,9 @@ const ResetPassword = () => {
                 const response = await axios.get(`http://localhost:4000/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
                 if (response.data.status) {
                     setIsValidToken(true);
-                } else {
-
                 }
             } catch (error) {
+                setIsValidToken(false);
                 toast.custom((t) => (
                     <div
                         className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
@@ -56,9 +66,8 @@ const ResetPassword = () => {
                             <h1>{'Invalid or Expired Link'}</h1>
                         </div>
                     </div>
-                ))
+                ));
             }
-
         };
 
         verifyToken();
@@ -67,24 +76,37 @@ const ResetPassword = () => {
     return (
         <div className="forgotPasswordSection">
             <Navbar />
-            {isValidToken ? <div className="forgotPasswordContainer">
-                <h1>Reset Password</h1>
-                <p>
-                    You have reached the password reset page. Please enter your new password below to secure your account
-                </p>
-                <div className="floating-label-group">
-                    <input type="password" id="new-password" onChange={(e) => setNewPassword(e.target.value)} className="form-control" autoComplete="off" required />
-                    <label className="floating-label">New Password</label>
+            {isValidToken ? (
+                <div className="forgotPasswordContainer">
+                    <h1>Reset Password</h1>
+                    <p>
+                        You have reached the password reset page. Please enter your new password below to secure your account.
+                    </p>
+                    <div className="floating-label-group">
+                        <input
+                            type="password"
+                            id="new-password"
+                            onChange={(e) => {
+                                setNewPassword(e.target.value);
+                                setError(""); // Clear the error when user starts typing
+                            }}
+                            className="form-control"
+                            autoComplete="off"
+                            required
+                        />
+                        <label className="floating-label">New Password</label>
+                    </div>
+                    {error && <p className="err-msg-validation" style={{ color: "#aa0000" }}>*{error}</p>}
+                    <button onClick={handleSubmit}>Reset Password</button>
                 </div>
-                <button onClick={handleSubmit}>Reset Password</button>
-            </div> :
+            ) : (
                 <div className="go-back-to-home">
                     <Link to="/">Invalid Link | Go Back to Home</Link>
-                </div>}
+                </div>
+            )}
             <Footer />
         </div>
-    )
+    );
 }
-
 
 export default ResetPassword;

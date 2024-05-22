@@ -62,7 +62,6 @@ const ProductSummary = () => {
 
 
     const Dropdown = ({ name, id, options, currentValue, index, propertyValues, setProperty }) => {
-        console.log(currentValue ? currentValue.value : "")
 
         const [showOption, setShowOption] = useState("");
         const isPreviousSelected = index === 0 || propertyValues[index - 1] !== undefined;

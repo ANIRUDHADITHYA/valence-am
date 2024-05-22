@@ -18,7 +18,7 @@ const Homepage = () => {
                     <div className={showMobMenuHome ? "home-navbar-section show" : "home-navbar-section"}>
                         <ul className="home-navbar-items">
                             <li id="home-close-li"><p className="get-price-header" onClick={() => { setShowMobMenuHome(false) }}>Close <span> &times;</span></p></li>
-                            <li className="home-nav-item"><div className="home-logo-wrapper"><img src="/Asserts/logo.png"></img></div></li>
+                            <li className="home-nav-item"><div className="home-logo-wrapper"><img src="/Asserts/logo.png" alt="valence logo"></img></div></li>
                             <li className="home-nav-item span">
                                 <Link to="/about" className="home-nav-item-div">
                                     <div className="home-nav-item-span-title">About</div>

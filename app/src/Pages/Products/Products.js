@@ -11,7 +11,7 @@ import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 
 const Products = () => {
 
-    const { allProducts, loading } = useContext(ProductsContext);
+    const { allProducts } = useContext(ProductsContext);
 
     const [everythingClick, setEverythingClick] = useState(false);
     const [categoriesClick, setCategoriesClick] = useState(false);
