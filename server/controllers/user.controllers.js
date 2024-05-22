@@ -7,30 +7,37 @@ import nodemailer from 'nodemailer';
 
 export const signupWithEmailAndPassword = async (req, res) => {
     const { name, company_name, mobile, email, password } = req.body;
-    const userEmail = await User.findOne({ email })
-    const userMobile = await User.findOne({ mobile })
-    if (userEmail) {
-        return res.json({ message: "email already existed." })
+
+    try {
+        const userEmail = await User.findOne({ email });
+        if (userEmail) {
+            return res.status(400).json({ message: "Email already exists." });
+        }
+
+        const userMobile = await User.findOne({ mobile });
+        if (userMobile) {
+            return res.status(400).json({ message: "Mobile number already exists." });
+        }
+
+        const hashPassword = await bcrypt.hash(password, 10);
+
+        const newUser = new User({
+            name,
+            company_name,
+            mobile,
+            email,
+            password: hashPassword,
+            role: "client",
+            reset_token_used: false
+        });
+
+        await newUser.save();
+        return res.status(201).json({ message: "User registered successfully." });
+    } catch (error) {
+        console.error('Error during user registration:', error);
+        return res.status(500).json({ message: "Server error. Please try again later." });
     }
-    if (userMobile) {
-        return res.json({ message: "mobile number already existed." })
-    }
-
-    const hashPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-        name,
-        company_name,
-        mobile,
-        email,
-        password: hashPassword,
-        role: "client",
-        reset_token_used: false
-    })
-
-    await newUser.save();
-    return res.json({ message: "user registered successfully." })
-}
+};
 
 export const signinWithEmailAndPassword = async (req, res) => {
     const { email, password, remember_me } = req.body;
@@ -39,7 +46,7 @@ export const signinWithEmailAndPassword = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({ message: 'user not found.' });
+            return res.status(404).json({ message: 'User as not found.' });
         }
 
         const validPassword = await bcrypt.compare(password, user.password);
@@ -60,7 +67,7 @@ export const signinWithEmailAndPassword = async (req, res) => {
             maxAge: remember_me ? 7 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000,
         });
 
-        return res.json({ status: true, message: 'login successful.', accessToken });
+        return res.json({ status: true, message: 'login successful.', user: user.name });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'server error.' });
@@ -134,13 +141,24 @@ export const resetPassword = async (req, res) => {
     }
 }
 
+export const verifyResetToken = async (req, res) => {
+    const resetToken = req.params.resetToken;
+    try {
+        const decoded = jwt.verify(resetToken, process.env.RESET_TOKEN_SECRET);
+        return res.status(200).json({ status: true, message: 'Reset token is valid', userId: decoded.id });
+    } catch (err) {
+        console.error(err);
+        return res.status(401).json({ message: 'Invalid or expired reset token' });
+    }
+};
+
 export const verifyUser = (req, res) => {
     const user = req.user;
-    res.json({ message: "valid user.", user });
+    res.json({ status: true, user });
 };
 
 
 export const signout = (req, res) => {
-    res.clearCookie('access_token')
-    return res.json({ status: true })
+    res.clearCookie('access_token');
+    return res.json({ status: true, message: 'Signed out successfully' });
 }

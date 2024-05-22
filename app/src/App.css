@@ -94,7 +94,6 @@ input::placeholder {
 }
 
 .floating-label-group input {
-  margin: 40px 0px;
   font-size: 16px;
   padding: 5px 0px;
 }

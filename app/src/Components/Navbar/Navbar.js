@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Navbar.css";
 import { Link } from 'react-router-dom';
 import SignSlider from '../SignSlider/SignSlider';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../ContextAPI/AuthContext';
 
 export default function Navbar() {
 
@@ -12,6 +14,9 @@ export default function Navbar() {
 
     const [cartValues, setCartValues] = useState([]);
     const [tooltipOpen, setTooltipOpen] = useState(false);
+    const { user, signout } = useContext(AuthContext);
+
+    const [showLogout, setShowLogout] = useState(false);
 
     useEffect(() => {
         const existingCartValuesJSON = localStorage.getItem('cartValues');
@@ -24,7 +29,15 @@ export default function Navbar() {
     return (
         <>
             <div className='navbar-section'>
+                <div className='toaster-section'>
+
+                    <Toaster
+                        position="top-left"
+                        reverseOrder={false}
+                    />
+                </div>
                 <div className='navbar-container'>
+
                     <div className='nav-items start'>
                         <a className='nav-logo-wrapper' href='/'>
                             <img src="/Asserts/logo.png" alt='logo'></img>
@@ -70,7 +83,15 @@ export default function Navbar() {
                     </ul>
                     <div className='nav-items end'>
 
-                        <p onClick={() => { setSignInOpen(true) }}>Sign In</p>
+                        {user ?
+                            <div className='nav-display-user-details'
+                                onMouseEnter={() => { setShowLogout(true) }}
+                                onMouseLeave={() => { setShowLogout(false) }}
+                            >
+                                <p className='display-user-name'>{user}</p>
+                                <p className={showLogout ? 'nav-logout-btn show' : 'nav-logout-btn'}><span className='hv-underline' onClick={signout}>Logout</span></p>
+                            </div> :
+                            <p onClick={() => { setSignInOpen(true) }}>Sign In</p>}
                         <Link className="cart-wrapper" to="/my-cart">
                             <img src="/Asserts/Icons/cart.png" alt="cart button"></img>
                         </Link>
@@ -106,7 +127,15 @@ export default function Navbar() {
                             <li onClick={() => { setMobileNavbar(false) }}><Link className='hv-underline' to="/become-a-supplier">Become A Supplier!</Link></li>
                         </ul>
                         <div className='nav-items end'>
-                            <p onClick={() => { setSignInOpen(true); setMobileNavbar(false) }}>Sign In</p>
+                            {user ?
+                                <div className='nav-display-user-details'
+                                    onMouseEnter={() => { setShowLogout(true) }}
+                                    onMouseLeave={() => { setShowLogout(false) }}
+                                >
+                                    <p className='display-user-name'>{user}</p>
+                                    <p className={showLogout ? 'nav-logout-btn show' : 'nav-logout-btn'}><span className='hv-underline' onClick={signout}>Logout</span></p>
+                                </div> :
+                                <p onClick={() => { setSignInOpen(true); setMobileNavbar(false) }}>Sign In</p>}
                         </div>
                     </div>
                     <SignSlider setSignInOpen={setSignInOpen} isSignInOpen={isSignInOpen} />

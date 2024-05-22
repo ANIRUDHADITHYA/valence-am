@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     mobile: { type: Number, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, required: true },
+    role: { type: String, default: "client" },
     reset_token_used: { type: Boolean, default: false }
 })
 

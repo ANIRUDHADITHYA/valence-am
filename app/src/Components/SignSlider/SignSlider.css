@@ -77,6 +77,7 @@
     padding: 0px 40px;
 }
 
+
 .signInBarContainer .signInInput button {
     padding: 18px 0px;
     margin: 18px 0px;
@@ -86,6 +87,13 @@
     text-align: center;
     cursor: pointer;
     border-radius: 2px;
+}
+
+
+
+.signInBarContainer .signInInput.loader .signInBtn:hover {
+    cursor: not-allowed;
+    background-color: var(--secondary-color);
 }
 
 .signInBarContainer .signInInput button:hover {
@@ -207,6 +215,25 @@
 .hv-underline.opx::after {
     height: 2.5px;
 }
+
+.floating-label-group.slider {
+    margin: 35px 0px;
+}
+
+.floating-label-group.slider-login {
+    margin: 20px 0px;
+}
+
+.err-msg-validation {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    padding-top: 3px;
+    color: #aa0000;
+}
+
+
+
 
 @media(max-width:700px) {
     .sign-in-container {

@@ -11,10 +11,11 @@ import Contact from './Pages/Contact/Contact';
 import PrivacyPolicy from './Pages/PAT/PrivacyPolicy';
 import TermsOfUse from './Pages/PAT/TermsOfUse';
 import ResetPassword from './Pages/ResetPassword/ResetPassword';
+import { AuthProvider } from './ContextAPI/AuthContext';
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Homepage />} />
@@ -30,7 +31,7 @@ function App() {
           <Route path="/terms-of-use" exact element={<TermsOfUse />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AuthProvider>
   );
 }
 
