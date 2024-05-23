@@ -14,8 +14,8 @@ const app = express()
 
 
 app.use(express.json());
-app.use(cors({ origin: [process.env.PRIMARY_HOST_URL, process.env.ADMIN_HOST_URL], credentials: true }));
-app.use(cookieParser({ origin: [process.env.PRIMARY_HOST_URL, process.env.ADMIN_HOST_URL], credentials: true }));
+app.use(cors({ origin: [process.env.PRIMARY_HOST_URL, process.env.ADMIN_HOST_URL, process.env.VPS_HOST_URL], credentials: true }));
+app.use(cookieParser({ origin: [process.env.PRIMARY_HOST_URL, process.env.ADMIN_HOST_URL, process.env.VPS_HOST_URL], credentials: true }));
 app.use(express.urlencoded({ extended: true }));
 
 connectDB();
