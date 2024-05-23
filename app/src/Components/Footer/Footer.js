@@ -16,7 +16,7 @@ const Footer = () => {
                     <a href="/become-a-supplier" className="end-bas">Become a Supplier!</a>
                     <div className="social-footer">
                         <a href="mailto:enquiry@valence-am.com"><i class="fa-regular fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/valenceadvancedmaterials/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/valence-advanced-materials/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>

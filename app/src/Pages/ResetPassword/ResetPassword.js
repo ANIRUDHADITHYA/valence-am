@@ -27,7 +27,7 @@ const ResetPassword = () => {
             return
         }
 
-        axios.post(`http://localhost:4000/auth/reset-password/${resetToken}`, {
+        axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/reset-password/${resetToken}`, {
             newPassword,
         }, { withCredentials: true }).then(response => {
             if (response.data.status) {
@@ -51,7 +51,7 @@ const ResetPassword = () => {
     useEffect(() => {
         const verifyToken = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
+                const response = await axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
                 if (response.data.status) {
                     setIsValidToken(true);
                 }

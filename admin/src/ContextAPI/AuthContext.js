@@ -6,12 +6,14 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [loginValue, setLoginValue] = useState("")
 
     useEffect(() => {
         const verifyAdmin = async () => {
             try {
-                const response = await Axios.get(`http://localhost:4000/auth/admin/verify-admin`, { withCredentials: true });
+                const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/verify-admin`, { withCredentials: true });
                 setIsAuthenticated(response.data.status);
+                setLoginValue(response.data.admin)
             } catch (error) {
                 setIsAuthenticated(false);
             } finally {
@@ -26,8 +28,9 @@ const AuthProvider = ({ children }) => {
             email, password
         }
         try {
-            const response = await Axios.post(`http://localhost:4000/auth/admin/signin`, signinValues, { withCredentials: true });
+            const response = await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/signin`, signinValues, { withCredentials: true });
             setIsAuthenticated(response.data.status);
+            setLoginValue(response.data)
             return response.data;
         } catch (error) {
             console.error('Login failed:', error);
@@ -37,7 +40,7 @@ const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await Axios.post(`http://localhost:4000/auth/admin/signout`, {}, { withCredentials: true });
+            await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/signout`, {}, { withCredentials: true });
             setIsAuthenticated(false);
         } catch (error) {
             console.error('Logout failed:', error);
@@ -45,7 +48,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, loading, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, loading, loginValue, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

@@ -92,7 +92,7 @@ const Contact = () => {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td className="contact-us-social"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/valenceadvancedmaterials/"><i class="fa-brands fa-linkedin-in"></i></a></td>
+                                                <td className="contact-us-social"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/valence-advanced-materials/"><i class="fa-brands fa-linkedin-in"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>

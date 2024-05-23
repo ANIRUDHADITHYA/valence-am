@@ -15,3 +15,12 @@
   --secondary-lite-color: #999999;
   --secondary-ultra-lite-color: #e0e0e0;
 }
+
+.err-msg-validation {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  padding-top: 3px;
+  color: #aa0000;
+  font-weight: 800;
+}
