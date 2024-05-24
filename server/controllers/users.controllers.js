@@ -34,7 +34,6 @@ export const signupWithEmailAndPassword = async (req, res) => {
         await newUser.save();
         return res.status(201).json({ message: "User registered successfully." });
     } catch (error) {
-        console.error('Error during user registration:', error);
         return res.status(500).json({ message: "Server error. Please try again later." });
     }
 };
@@ -69,7 +68,6 @@ export const signinWithEmailAndPassword = async (req, res) => {
 
         return res.json({ status: true, message: 'login successful.', user: user.name });
     } catch (error) {
-        console.error(error);
         return res.status(500).json({ message: 'server error.' });
     }
 }
@@ -115,7 +113,6 @@ export const forgotPassword = async (req, res) => {
         await user.save();
         return res.status(200).json({ status: true, message: "Email sent" });
     } catch (error) {
-        console.error(error);
         return res.status(500).json({ message: "Error sending email", error: error.message });
     }
 };
@@ -147,7 +144,6 @@ export const verifyResetToken = async (req, res) => {
         const decoded = jwt.verify(resetToken, process.env.RESET_TOKEN_SECRET);
         return res.status(200).json({ status: true, message: 'Reset token is valid', userId: decoded.id });
     } catch (err) {
-        console.error(err);
         return res.status(401).json({ message: 'Invalid or expired reset token' });
     }
 };
