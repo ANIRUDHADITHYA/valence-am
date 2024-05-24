@@ -129,13 +129,6 @@ export function ValidateDimensionData(dimensionData) {
             if (!value) {
                 errors[`dimension_values[${index}].values.${property}`] = 'Value is required';
             }
-
-            // Check for duplicate values
-            if (valueSet.has(value)) {
-                errors[`dimension_values[${index}].values.${property}`] = 'Duplicate value found';
-            } else {
-                valueSet.add(value);
-            }
         });
     });
 

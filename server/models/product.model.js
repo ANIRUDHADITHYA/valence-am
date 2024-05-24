@@ -30,7 +30,8 @@ const productSchema = new Schema({
     display_title: { type: String, required: true },
     temperature: { type: String, required: true },
     physical_dimensions: [physicalDimensionSchema],
-    dimension_values: [dimensionValueSchema]
+    dimension_values: [dimensionValueSchema],
+    product_status: { type: Boolean, default: true }
 });
 
 const Product = model("Products", productSchema)

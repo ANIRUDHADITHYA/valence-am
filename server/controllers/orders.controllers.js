@@ -1,7 +1,21 @@
 import Order from "../models/order.model.js";
 import nodemailer from 'nodemailer';
 
-const sendEmail = async (to, subject, text) => {
+const categories = {
+    0: "everything",
+    1: "Vacuum Bagging Films",
+    2: "Release Films",
+    3: "Breathers & Bleeders",
+    4: "Peel Ply",
+    5: "Sealant Tapes",
+    6: "Pressure Sensitive Tapes",
+    7: "Vacuum Valves & Hoses",
+    8: "Resin Flow Mesh",
+    9: "Infusion Tooling & Accessories",
+    10: "Infusion Flow & Control Systems",
+}
+
+const sendEmail = async (to, subject, orderDetails) => {
     const transporter = nodemailer.createTransport({
         host: 'smtpout.secureserver.net',
         port: 465,
@@ -12,11 +26,33 @@ const sendEmail = async (to, subject, text) => {
         }
     });
 
+    const emailContent = `
+    <img src="https://valence-new.netlify.app/Asserts/logo.png" alt="logo"/>
+    <h1>Thank you for your Interest in Valence Products.</h1>
+    <h2>Your Order Details are as follows:</h2>
+    <ol>
+        ${orderDetails.map(orderItem => `
+            <li>
+                <h3>Product ID: ${orderItem.product_id}</h3>
+                <p>Quantity: ${orderItem.quantity}</p>
+                <p>Category: ${categories[orderItem.product_category]}</p>
+                ${orderItem.product_properties.map(prop => `
+                    <div>
+                        <h5><b>${prop.property_name}:</b> ${prop.value}</h5>
+                        ${prop.customized ? `<h5>(${prop.custom_value})</h5>` : ""}
+                    </div>
+                `).join('')}
+            </li>
+        `).join('')}
+    </ol>
+`;
+
+
     const mailOptions = {
         from: process.env.NO_REPLY_EMAIL_ID,
-        to: [to, "anirudhadithya.b.s@gmail.com"],
+        to: [to, "no-reply@valence-am.com"],
         subject,
-        text
+        html: emailContent
     };
 
     await transporter.sendMail(mailOptions);
@@ -53,7 +89,7 @@ export const createOrder = async (req, res) => {
         await newOrder.save();
 
         const emailText = `We have received your order with ID ${order_id}. Order details: ${JSON.stringify(orders)}`;
-        await sendEmail(req.user.email, 'Valence | Order Confirmation', emailText);
+        await sendEmail(req.user.email, 'Valence | Order Confirmation', newOrder.orders);
         return res.status(201).json({ status: true, message: 'Order created successfully', order_id: order_id });
     } catch (error) {
         console.error('Error creating order:', error);

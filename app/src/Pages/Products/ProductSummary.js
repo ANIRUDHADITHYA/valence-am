@@ -59,38 +59,95 @@ const ProductSummary = () => {
 
 
     const [property, setProperty] = useState([]);
-
-
-    const Dropdown = ({ name, id, options, currentValue, index, propertyValues, setProperty }) => {
+    const Dropdown = ({ name, id, options, index }) => {
 
         const [showOption, setShowOption] = useState("");
-        const isPreviousSelected = index === 0 || propertyValues[index - 1] !== undefined;
+        const [customValue, setCustomValue] = useState("");
+        const [custemError, setCustomError] = useState("")
+
+        const isPreviousSelected =
+            index === 0 ||
+            (property[index - 1] !== undefined &&
+                property[index - 1].value !== undefined &&
+                (!property[index - 1].customized || (property[index - 1].customized && property[index - 1].custom_value !== "")));
         const handleChange = (newValue) => {
-            setProperty((prevState) => {
-                const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name }];
-                return newState;
-            });
+            if (newValue === "Customize") {
+                setProperty((prevState) => {
+                    const newState = [...prevState.slice(0, index), { value: "Customize", property_id: id, property_name: name, customized: true, custom_value: "" }];
+                    return newState;
+                });
+            } else {
+                setProperty((prevState) => {
+                    const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name, customized: false }];
+                    return newState;
+                });
+            }
         };
+
+        const handleCustomChange = (e) => {
+            const customValue = e.target.value;
+            setCustomValue(customValue);
+        };
+
+        function handleAddCustom() {
+            let error = "";
+            if (!customValue.trim()) {
+                error = `${name} is required`
+                setCustomError(error)
+            } else if (options.includes(customValue)) {
+                error = "Value already available with us";
+                setCustomError(error)
+            }
+            else {
+                setProperty((prevState) => {
+                    const newState = [...prevState.slice(0, index), { ...property[index], custom_value: customValue }];
+                    return newState;
+                });
+            }
+
+        }
+
 
         return (
             <>
                 {isPreviousSelected && (
                     <div className="prod-prop">
-                        <h3 htmlFor={id}>{name} </h3>
-                        <OutsideClickHandler onOutsideClick={() => { setShowOption("") }}>
-                            <h4 className="phy-prop-select" onClick={() => { setShowOption(id) }}>{currentValue ? currentValue.value : `Select ${name}`}<i class="fa-solid fa-angle-down"></i></h4>
+                        <h3 htmlFor={id}>{name}</h3>
+                        <OutsideClickHandler onOutsideClick={() => { setShowOption(""); }}>
+                            <h4 className="phy-prop-select" onClick={() => { setShowOption(id); }}>
+                                {property[index] && property[index].value ? property[index].value : `Select ${name}`}
+                                <i className="fa-solid fa-angle-down"></i>
+                            </h4>
                         </OutsideClickHandler>
                         <div className={showOption === id ? "phy-prop-option active" : "phy-prop-option"}>
-                            {options.map((option, index) => (
+                            {options.map((option, idx) => (
                                 <h4
-                                    className={currentValue ? currentValue.value === option ? "phy-prop-selected" : "" : ""}
-                                    key={index}
-                                    onClick={() => { handleChange(option) }}
-                                >{option}</h4>
+                                    className={property[index] && property[index].value === option ? "phy-prop-selected" : ""}
+                                    key={idx}
+                                    onClick={() => { handleChange(option); }}
+                                >
+                                    {option}
+                                </h4>
                             ))}
                         </div>
-
-                    </div >
+                        {property[index] && property[index].customized && (
+                            <>
+                                <div className="customized-inputbox">
+                                    <input
+                                        type="text"
+                                        value={property[index]?.custom_value ? property[index]?.custom_value : customValue}
+                                        onChange={handleCustomChange}
+                                        placeholder={`${name}`}
+                                        disabled={property[index] && property[index].custom_value}
+                                    />
+                                    {!property[index]?.custom_value && (
+                                        <button onClick={handleAddCustom}>ADD</button>
+                                    )}
+                                </div>
+                                {custemError && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{custemError}</span>}
+                            </>
+                        )}
+                    </div>
                 )}
             </>
         );
@@ -163,7 +220,7 @@ const ProductSummary = () => {
                         <ul className="ps-nav-container">
                             <li><Link to="/">Home</Link><i class="fa-solid fa-angle-right"></i></li>
                             <li><Link to="/products">Products</Link><i class="fa-solid fa-angle-right"></i></li>
-                            <li><Link to={`/products?process=${currentProcess}`}>{categories[filterProduct.category_id]}</Link><i class="fa-solid fa-angle-right"></i></li>
+                            <li><Link to={`/products?process=${currentProcess}&category=${filterProduct.category_id}`}>{categories[filterProduct.category_id]}</Link><i class="fa-solid fa-angle-right"></i></li>
                             <li><Link to="#">{filterProduct.display_title}</Link></li>
                         </ul>
                         <div className="ps-nav-container-pn">
@@ -213,10 +270,7 @@ const ProductSummary = () => {
                                                     .map((value) => value.values[dimension.id])
                                                     .filter((value, idx, self) => self.indexOf(value) === idx)
                                                 }
-                                                currentValue={property[index]}
                                                 index={index}
-                                                propertyValues={property}
-                                                setProperty={setProperty}
                                             />
 
                                         ))}

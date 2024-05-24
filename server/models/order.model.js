@@ -3,7 +3,9 @@ import { Schema, model } from "mongoose";
 const productPropertySchema = new Schema({
     value: String,
     property_id: String,
-    property_name: String
+    property_name: String,
+    customized: { type: Boolean, default: false },
+    custom_value: String
 });
 
 const orderSchema = new Schema({
