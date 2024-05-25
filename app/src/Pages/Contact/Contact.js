@@ -1,8 +1,11 @@
 import Footer from "../../Components/Footer/Footer"
 import Navbar from "../../Components/Navbar/Navbar"
+import useGetInTouchForm from "../../Hooks/useGetInTouchForm";
+import ValidateGetinTouch from "../../Utlis/ValidateGetinTouch";
 import "./Contact.css";
 
 const Contact = () => {
+    const { values, valuesError, loader, handleValueChange, handleSubmit } = useGetInTouchForm(ValidateGetinTouch);
     return (
         <div className="contact-main">
             <Navbar />
@@ -104,38 +107,75 @@ const Contact = () => {
                     <div className='getInTouchSection'>
                         <div className='getInTouchSectionContainer'>
                             <h1>Get In Touch</h1>
-                            <div className='getInTouchBody'>
-                                <div className='contact-input-pair'>
-                                    <div className="contact-input-pair-wrapper">
-                                        <div className="floating-label-group">
-                                            <input type="text" className="form-control" autoComplete="off" required />
-                                            <label className="floating-label">Name</label>
+                            {loader ?
+                                <div className="getinTouch-loader">
+                                    <p className="getinTouch-loader-msg">Your Feedback is being recorded, Please wait..</p>
+                                </div>
+                                : <div className='getInTouchBody'>
+                                    <div className='contact-input-pair'>
+                                        <div className="contact-input-pair-wrapper">
+                                            <div className="floating-label-group">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="name"
+                                                    autoComplete="off"
+                                                    value={values.name}
+                                                    onChange={handleValueChange}
+                                                    required />
+                                                <label className="floating-label">Name</label>
+                                                {valuesError.name && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.name}</span>}
+                                            </div>
+                                        </div>
+                                        <div className="floating-label-group-space">
+                                        </div>
+                                        <div className="contact-input-pair-wrapper">
+                                            <div className="floating-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="email"
+                                                    name="email"
+                                                    className="form-control"
+                                                    autoComplete="off"
+                                                    value={values.email}
+                                                    onChange={handleValueChange}
+                                                    required />
+                                                <label className="floating-label">Email</label>
+                                                {valuesError.email && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.email}</span>}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="floating-label-group-space">
-
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            autoComplete="off"
+                                            name="subject"
+                                            value={values.subject}
+                                            onChange={handleValueChange}
+                                            required />
+                                        <label className="floating-label">Subject</label>
+                                        {valuesError.subject && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.subject}</span>}
                                     </div>
-                                    <div className="contact-input-pair-wrapper">
-                                        <div className="floating-label-group">
-                                            <input type="text" id="email" className="form-control" autoComplete="off" required />
-                                            <label className="floating-label">Email</label>
+                                    <div className="textAreaContactSection">
+                                        <div class="floating-label-group">
+                                            <textarea
+                                                type="text"
+                                                className="form-control"
+                                                autoComplete="off"
+                                                name="message"
+                                                value={values.message}
+                                                onChange={handleValueChange}
+                                                required >
+                                            </textarea>
+                                            <label className="floating-label">Message</label>
+                                            {valuesError.message && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.message}</span>}
                                         </div>
                                     </div>
-                                </div>
-                                <div className="floating-label-group">
-                                    <input type="text" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Subject</label>
-                                </div>
-                                <div className="textAreaContactSection">
-                                    <div class="floating-label-group">
-                                        <textarea type="text" className="form-control" autoComplete="off" required ></textarea>
-                                        <label className="floating-label">Message</label>
+                                    <div className='floating-label-group-button'>
+                                        <button onClick={handleSubmit}>Send Message</button>
                                     </div>
-                                </div>
-                                <div className='floating-label-group-button'>
-                                    <button>Send Message</button>
-                                </div>
-                            </div>
+                                </div>}
                         </div>
                     </div>
                 </div>

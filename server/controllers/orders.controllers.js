@@ -87,8 +87,6 @@ export const createOrder = async (req, res) => {
         });
 
         await newOrder.save();
-
-        const emailText = `We have received your order with ID ${order_id}. Order details: ${JSON.stringify(orders)}`;
         await sendEmail(req.user.email, 'Valence | Order Confirmation', newOrder.orders);
         return res.status(201).json({ status: true, message: 'Order created successfully', order_id: order_id });
     } catch (error) {

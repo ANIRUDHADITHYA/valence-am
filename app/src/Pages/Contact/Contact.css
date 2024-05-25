@@ -188,6 +188,17 @@
     height: 100%;
 }
 
+.getinTouch-loader {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.getinTouch-loader p {
+    font-size: 18px;
+}
+
 
 @media(max-width: 850px) {
     .contactMainContainer {

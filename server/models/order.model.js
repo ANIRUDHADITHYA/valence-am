@@ -23,6 +23,6 @@ const OrderSchema = new Schema({
     order_status: { type: String, default: "In Enquiry" }
 });
 
-const Order = model("Order", OrderSchema);
+const Order = model("Orders", OrderSchema);
 
 export default Order;

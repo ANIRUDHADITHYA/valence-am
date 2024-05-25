@@ -2,8 +2,11 @@ import React from 'react';
 import "./BecomeASupplier.css";
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import useBecomeASupplierForm from '../../Hooks/useBecomeASupplierForm';
+import ValidateBecomeASupplier from '../../Utlis/ValidateBecomeASupplier';
 
 export default function BecomeASupplier() {
+    const { values, valuesError, loader, responseMessage, handleValueChange, handleSubmit } = useBecomeASupplierForm(ValidateBecomeASupplier);
     return (
         <div className='bas-section'>
             <Navbar />
@@ -46,54 +49,108 @@ export default function BecomeASupplier() {
             <div className='getInTouchSection bas'>
                 <div className='getInTouchSectionContainer'>
                     <h1>Ready to Get Started ?</h1>
-                    <div className='getInTouchBody'>
-                        <div className='contact-input-pair'>
-                            <div className="contact-input-pair-wrapper">
-                                <div className="floating-label-group">
-                                    <input type="text" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Name</label>
+                    {loader ?
+                        <div className="getinTouch-loader">
+                            <p className="getinTouch-loader-msg">Your Application is being recorded, Please wait..</p>
+                        </div>
+                        :
+                        <div className='getInTouchBody'>
+                            <div className='contact-input-pair'>
+                                <div className="contact-input-pair-wrapper">
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="text"
+                                            name='name'
+                                            value={values.name}
+                                            onChange={handleValueChange}
+                                            className="form-control"
+                                            autoComplete="off"
+                                            required />
+                                        <label className="floating-label">Name</label>
+                                    </div>
+                                    {valuesError.name && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.name}</span>}
+                                </div>
+                                <div className="floating-label-group-space">
+                                </div>
+                                <div className="contact-input-pair-wrapper">
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="text"
+                                            name='company_name'
+                                            value={values.company_name}
+                                            onChange={handleValueChange}
+                                            className="form-control"
+                                            autoComplete="off"
+                                            required />
+                                        <label className="floating-label">Company Name</label>
+                                    </div>
+                                    {valuesError.company_name && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.company_name}</span>}
                                 </div>
                             </div>
-                            <div className="floating-label-group-space">
-                            </div>
-                            <div className="contact-input-pair-wrapper">
-                                <div className="floating-label-group">
-                                    <input type="text" id="email" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Company Name</label>
+                            <div className='contact-input-pair'>
+                                <div className="contact-input-pair-wrapper">
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="text"
+                                            name='email'
+                                            value={values.email}
+                                            onChange={handleValueChange}
+                                            className="form-control"
+                                            autoComplete="off"
+                                            required />
+                                        <label className="floating-label">Email</label>
+                                    </div>
+                                    {valuesError.email && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.email}</span>}
+                                </div>
+                                <div className="floating-label-group-space">
+                                </div>
+                                <div className="contact-input-pair-wrapper">
+                                    <div className="floating-label-group">
+                                        <input
+                                            type="number"
+                                            name='phone'
+                                            value={values.phone}
+                                            onChange={handleValueChange}
+                                            className="form-control"
+                                            autoComplete="off"
+                                            required />
+                                        <label className="floating-label">Phone</label>
+                                    </div>
+                                    {valuesError.phone && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.phone}</span>}
                                 </div>
                             </div>
-                        </div>
-                        <div className='contact-input-pair'>
-                            <div className="contact-input-pair-wrapper">
-                                <div className="floating-label-group">
-                                    <input type="text" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Email</label>
+                            <div className="floating-label-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    autoComplete="off"
+                                    name='company_website'
+                                    value={values.company_website}
+                                    onChange={handleValueChange}
+                                    required />
+                                <label className="floating-label">Company Website</label>
+                            </div>
+                            {valuesError.company_website && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.company_website}</span>}
+                            <div className="textAreaContactSection">
+                                <div class="floating-label-group">
+                                    <textarea
+                                        type="text"
+                                        className="form-control"
+                                        autoComplete="off"
+                                        name='message'
+                                        value={values.message}
+                                        onChange={handleValueChange}
+                                        required
+                                    >
+                                    </textarea>
+                                    <label className="floating-label">Please describe your areas of interest</label>
                                 </div>
+                                {valuesError.message && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.message}</span>}
                             </div>
-                            <div className="floating-label-group-space">
-
+                            <div className='floating-label-group-button bas'>
+                                <button onClick={handleSubmit}>Send Message</button>
                             </div>
-                            <div className="contact-input-pair-wrapper">
-                                <div className="floating-label-group">
-                                    <input type="text" id="email" className="form-control" autoComplete="off" required />
-                                    <label className="floating-label">Phone</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="floating-label-group">
-                            <input type="text" className="form-control" autoComplete="off" required />
-                            <label className="floating-label">Company Website</label>
-                        </div>
-                        <div className="textAreaContactSection">
-                            <div class="floating-label-group">
-                                <textarea type="text" className="form-control" autoComplete="off" required ></textarea>
-                                <label className="floating-label">Please describe your areas of interest</label>
-                            </div>
-                        </div>
-                        <div className='floating-label-group-button bas'>
-                            <button>Send Message</button>
-                        </div>
-                    </div>
+                        </div>}
                     <p className='bas-conatct-info'>Got questions? Contact our support team at <a href="mailto:enquiry@valence-am.com">enquiry@valence-am.com</a> for assistance.</p>
                 </div>
             </div>

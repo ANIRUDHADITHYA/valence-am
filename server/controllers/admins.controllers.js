@@ -34,7 +34,7 @@ export const signinWithEmailAndPasswordAdmin = async (req, res) => {
     const { email, password } = req.body;
     try {
         const admin = await Admin.findOne({ email });
-        const sanitizedAdminData = { ...admin._doc, password: undefined, last_login: "" };
+        const sanitizedAdminData = { ...admin?._doc, password: undefined, last_login: "" };
 
         if (!admin) {
             return res.status(404).json({ message: 'Unauthorized Access!' });

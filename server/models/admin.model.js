@@ -9,6 +9,6 @@ const AdminSchema = new Schema({
     last_login: { type: Date, default: Date.now }
 })
 
-const Admin = model("Admin", AdminSchema)
+const Admin = model("Admins", AdminSchema)
 
 export default Admin;
