@@ -1,5 +1,5 @@
 import express from "express";
-import { addProduct, getAllProducts, getProductByProcessID, getProductByProductID, getProductByCategoryID } from "../controllers/products.controllers.js";
+import { addProduct, getAllProducts } from "../controllers/products.controllers.js";
 import { verifyAdminAccessToken } from "../middlewares/verifyAccessToken.js";
 
 const router = express.Router();

@@ -19,7 +19,7 @@ const sendEmail = async (to, subject, orderDetails) => {
     const transporter = nodemailer.createTransport({
         host: 'smtpout.secureserver.net',
         port: 465,
-        sameSite: 'Lax',
+        secure: true,
         auth: {
             user: process.env.NO_REPLY_EMAIL_ID,
             pass: process.env.NO_REPLY_EMAIL_PASS
