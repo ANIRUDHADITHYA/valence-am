@@ -38,7 +38,7 @@ const useSignupWithEmailAndPassword = (Validate) => {
         const signupUser = async () => {
             try {
                 setSignupLoader(true)
-                await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/signup`, userSignupValues, { withCredentials: true });
+                await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/api/auth/signup`, userSignupValues, { withCredentials: true });
                 toast.custom((t) => (
                     <div
                         className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}

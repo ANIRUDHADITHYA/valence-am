@@ -32,7 +32,7 @@ const ResetPassword = () => {
 
         setLoader(true)
 
-        axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/reset-password/${resetToken}`, {
+        axios.post(`${process.env.REACT_APP_API_HOST_URL}/api/auth/reset-password/${resetToken}`, {
             newPassword,
         }, { withCredentials: true }).then(response => {
             setLoader(false)
@@ -59,7 +59,7 @@ const ResetPassword = () => {
         const verifyToken = async () => {
             setLoader(true);
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
+                const response = await axios.get(`${process.env.REACT_APP_API_HOST_URL}/api/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
                 setLoader(false)
                 if (response.data.status) {
                     setIsValidToken(true);

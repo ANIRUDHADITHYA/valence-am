@@ -41,7 +41,7 @@ const LostPassword = () => {
         setIsSubmitting(true);
         try {
             await Axios.post(
-                `${process.env.REACT_APP_API_HOST_URL}/auth/forgot-password`,
+                `${process.env.REACT_APP_API_HOST_URL}/api/auth/forgot-password`,
                 { email },
                 { withCredentials: true } // Include credentials in the request
             );

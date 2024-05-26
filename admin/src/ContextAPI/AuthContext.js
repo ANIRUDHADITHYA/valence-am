@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const verifyAdmin = async () => {
             try {
-                const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/verify-admin`, { withCredentials: true });
+                const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/api/auth/admin/verify-admin`, { withCredentials: true });
                 setIsAuthenticated(response.data.status);
                 setLoginValue(response.data.admin)
             } catch (error) {
@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
             email, password
         }
         try {
-            const response = await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/signin`, signinValues, { withCredentials: true });
+            const response = await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/api/auth/admin/signin`, signinValues, { withCredentials: true });
             setIsAuthenticated(response.data.status);
             setLoginValue(response.data)
             return response.data;
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/admin/signout`, {}, { withCredentials: true });
+            await Axios.post(`${process.env.REACT_APP_API_HOST_URL}/api/auth/admin/signout`, {}, { withCredentials: true });
             setIsAuthenticated(false);
         } catch (error) {
             console.error('Logout failed:', error);
