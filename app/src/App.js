@@ -13,6 +13,7 @@ import TermsOfUse from './Pages/PAT/TermsOfUse';
 import ResetPassword from './Pages/ResetPassword/ResetPassword';
 import { AuthProvider } from './ContextAPI/AuthContext';
 import { ProductsProvider } from './ContextAPI/ProductsContext';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             <Route path="/reset-password/:resetToken" exact element={<ResetPassword />} />
             <Route path="/privacy-policy" exact element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" exact element={<TermsOfUse />} />
+            <Route path='/404-page-not-found' exact element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

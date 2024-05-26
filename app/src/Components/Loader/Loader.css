@@ -1,0 +1,28 @@
+.network-loader {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.network-loader p {
+    text-align: center;
+}
+
+
+.loader-message {
+    text-align: end;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

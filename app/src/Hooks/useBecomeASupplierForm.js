@@ -49,7 +49,7 @@ const useBecomeASupplierForm = (Validate) => {
                     >
                         <div className='app-toaster'>
                             <i class="fa-regular fa-circle-check"></i>
-                            <h1>Your Application Received!</h1>
+                            <h1>Application Submitted!</h1>
                         </div>
                     </div>
                 ))

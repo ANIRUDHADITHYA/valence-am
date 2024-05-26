@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
+import { Toaster } from "react-hot-toast";
 
 const Products = () => {
 
@@ -62,6 +63,10 @@ const Products = () => {
     return (
         <div className="products-section">
             < Navbar />
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             <div className="products-container">
                 <h1 className="product-title">Products</h1>
                 <div className="product-header-container">

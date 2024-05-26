@@ -2,11 +2,16 @@ import React from 'react'
 import Navbar from '../../Components/Navbar/Navbar';
 import "./index.css";
 import Footer from '../../Components/Footer/Footer';
+import { Toaster } from 'react-hot-toast';
 
 export default function TermsOfUse() {
     return (
         <div className='pap-section'>
             <Navbar />
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             <div className='pap-info-container'>
                 <div className='pap-title-card'>
                     <h1>Terms of Use</h1>

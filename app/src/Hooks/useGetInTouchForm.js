@@ -48,7 +48,7 @@ const useGetInTouchForm = (Validate) => {
                     >
                         <div className='app-toaster'>
                             <i class="fa-regular fa-circle-check"></i>
-                            <h1>Feedback Received!</h1>
+                            <h1>Request Submitted!</h1>
                         </div>
                     </div>
                 ))

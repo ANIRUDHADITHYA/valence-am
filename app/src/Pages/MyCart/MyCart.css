@@ -169,7 +169,7 @@
 .get-price-card-container {
     background-color: rgba(0, 0, 0, 0.8);
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -180,6 +180,7 @@
     display: flex;
 
 }
+
 
 
 .get-price-card {
@@ -240,18 +241,6 @@
     font-size: 22px;
 }
 
-.get-price-card-container.loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cart-loader {
-    text-align: end;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-}
 
 
 
@@ -271,6 +260,18 @@
 
     .noBorder-getBtn {
         margin-left: 25px;
+    }
+
+    .get-price-content {
+        padding: 20px 50px;
+    }
+
+    .get-price-content h1 {
+        font-size: 42px;
+    }
+
+    .get-price-content p {
+        font-size: 20px;
     }
 }
 
@@ -298,6 +299,24 @@
 
     .no-td {
         display: none;
+    }
+
+    .get-price-content {
+        padding: 0px 30px;
+    }
+
+    .get-price-content h1 {
+        font-size: 38px;
+    }
+
+    .get-price-content p {
+        font-size: 18px;
+    }
+
+    .get-price-card {
+        width: 90%;
+        height: 80vh;
+
     }
 }
 

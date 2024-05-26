@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./About.css";
@@ -6,6 +7,11 @@ const About = () => {
     return (
         <div className="about-us-main">
             <Navbar />
+
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             <div className="page-titles">
                 <div className="entry-titles">
                     About

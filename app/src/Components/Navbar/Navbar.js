@@ -3,7 +3,6 @@ import "./Navbar.css";
 import { Link } from 'react-router-dom';
 import SignSlider from '../SignSlider/SignSlider';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../ContextAPI/AuthContext';
 
 export default function Navbar(props) {
@@ -34,11 +33,6 @@ export default function Navbar(props) {
         <>
             <div className='navbar-section'>
                 <div className='toaster-section'>
-
-                    <Toaster
-                        position="top-left"
-                        reverseOrder={false}
-                    />
                 </div>
                 <div className='navbar-container'>
 

@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextAPI/AuthContext";
-import toast from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { categories } from "../../Utlis/globalVariables.js"
+import Loader from "../../Components/Loader/Loader.js";
 
 const MyCart = () => {
     const [cartValues, setCartValues] = useState([]);
@@ -100,6 +101,10 @@ const MyCart = () => {
     return (
         <div className="cart-section">
             <Navbar openSignSlider={openSignslider} />
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             <div className="cart-container-main">
                 <p>Cart</p>
                 <div style={{ overflowX: "auto" }} className="cart-table-wrap">
@@ -180,9 +185,7 @@ const MyCart = () => {
             {(loader || showThankyou) ?
                 loader ?
 
-                    <div className="get-price-card-container loader">
-                        <p className="cart-loader">Please wait. While we process your request...</p>
-                    </div> :
+                    <Loader message={"Please wait. While we process your request..."} /> :
                     showThankyou ?
                         <div className="get-price-card-container">
                             <div className="get-price-card">
@@ -191,7 +194,7 @@ const MyCart = () => {
                                     <h1>Thank You!</h1>
                                     <p>Your exclusive offer and tailored requirements are about to hit your
                                         inbox – keep an eye out for them in your registered email!</p>
-                                    <p><b>Your Order ID is {orderId}</b></p>
+                                    <p style={{ color: "var(--primary-color)", paddingTop: "10px" }}><b>Your Order ID is {orderId}</b></p>
                                 </div>
                             </div>
                         </div> : "" : ""

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { categories } from "../../Utlis/globalVariables.js"
 import { useContext } from "react";
 import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
+import { Toaster } from "react-hot-toast";
 
 const ProductSummary = () => {
 
@@ -214,6 +215,10 @@ const ProductSummary = () => {
     return (
         <div className="product-page-main">
             <Navbar />
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             {filterProduct ?
                 <div className="product-summary-container">
                     <div className="product-summary-header">

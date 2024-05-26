@@ -87,7 +87,7 @@ export default function SignSlider(props) {
                                     </div>
                                 </>}
                                 {signinLoader ? <button className="signInBtn">SIGNING IN PLEASE WAIT...</button> : <button className="signInBtn" onClick={handleSignin}>SIGN IN</button>}
-                                {!signinLoader && <button className="signUpBtn" onClick={() => { setSignIn(false) }} >BECOME A VALENCIAN!</button>}
+                                {!signinLoader && <button className="signUpBtn" onClick={() => { setSignIn(false) }} >BECOME A VALENCIAN</button>}
                             </div> :
                             <div className={signupLoader ? "signInInput loader" : "signInInput"}>
                                 {!signupLoader && <div>

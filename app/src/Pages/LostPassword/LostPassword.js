@@ -3,8 +3,9 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./LostPassword.css";
 import Axios from "axios"
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import { AuthContext } from "../../ContextAPI/AuthContext";
+import Loader from "../../Components/Loader/Loader";
 
 const LostPassword = () => {
     const { user, signout } = useContext(AuthContext);
@@ -74,12 +75,17 @@ const LostPassword = () => {
     return (
         <div className="forgotPasswordSection">
             <Navbar />
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
             <div className="forgotPasswordContainer">
                 <h1>Lost Password</h1>
                 {isSubmitting ?
-                    <p className="email-sent-msg pl">Please wait. While we process your request.</p> :
+                    <Loader message={"Your request is being processed. Please wait..."} />
+                    :
                     deliveryMessage ?
-                        <p className="email-sent-msg">We have sent you the password reset link to your registered email address. Please check your inbox or spam folder.<b> Note that the link will expire within 5 minutes.</b></p> :
+                        <p className="email-sent-msg">Password reset link sent! Check your inbox or spam folder. <span><b>It expires in 5 minutes.</b></span></p> :
                         <>
                             <p>
                                 Lost your password? Please enter your registered email address. You will receive a link to create a new password via email.

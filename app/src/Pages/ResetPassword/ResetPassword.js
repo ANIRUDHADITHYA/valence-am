@@ -3,15 +3,18 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
+import Loader from "../../Components/Loader/Loader";
 
 const ResetPassword = () => {
     const { resetToken } = useParams();
     const [isValidToken, setIsValidToken] = useState(false);
     const [newPassword, setNewPassword] = useState("");
     const [error, setError] = useState("");
+    const [loader, setLoader] = useState(false);
 
     const navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,14 +30,18 @@ const ResetPassword = () => {
             return
         }
 
+        setLoader(true)
+
         axios.post(`${process.env.REACT_APP_API_HOST_URL}/auth/reset-password/${resetToken}`, {
             newPassword,
         }, { withCredentials: true }).then(response => {
+            setLoader(false)
             if (response.data.status) {
                 alert('Password has been reset successfully. Click OK to navigate to Products.');
                 navigate("/products")
             }
         }).catch(error => {
+            setLoader(false)
             toast.custom((t) => (
                 <div
                     className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
@@ -50,12 +57,15 @@ const ResetPassword = () => {
 
     useEffect(() => {
         const verifyToken = async () => {
+            setLoader(true);
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_HOST_URL}/auth/verify-reset-token/${resetToken}`, { withCredentials: true });
+                setLoader(false)
                 if (response.data.status) {
                     setIsValidToken(true);
                 }
             } catch (error) {
+                setLoader(false)
                 setIsValidToken(false);
                 toast.custom((t) => (
                     <div
@@ -76,7 +86,12 @@ const ResetPassword = () => {
     return (
         <div className="forgotPasswordSection">
             <Navbar />
-            {isValidToken ? (
+            <Toaster
+                position="top-left"
+                reverseOrder={false}
+            />
+            {loader ? <Loader message="Your request is being processed. Please wait..." /> : ""}
+            {!isValidToken ? (
                 <div className="forgotPasswordContainer">
                     <h1>Reset Password</h1>
                     <p>
@@ -100,8 +115,11 @@ const ResetPassword = () => {
                     <button onClick={handleSubmit}>Reset Password</button>
                 </div>
             ) : (
-                <div className="go-back-to-home">
-                    <Link to="/">Invalid Link | Go Back to Home</Link>
+                <div className="forgotPasswordContainer">
+                    <h1>Link Expired</h1>
+                    <p>Your password reset link has expired. Don't worry! Just click the button below to restart the process.</p>
+
+                    <a href="/lost-password">RESTART PASSWORD RESET</a>
                 </div>
             )}
             <Footer />
