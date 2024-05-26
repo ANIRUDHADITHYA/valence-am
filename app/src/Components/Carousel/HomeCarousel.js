@@ -27,11 +27,11 @@ export default function HomeCarousel() {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
-                    <video autoPlay loop muted className='home-caro-video'>
+                    <video autoPlay="autoplay" playsInLine="playsinline" loop="true" muted="true" className='home-caro-video'>
                         <source src="/Asserts/Carousel/caro3.webm" type="video/webm" />
+                        <source src="/Asserts/Carousel/caro3.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
-                    <img src="/Asserts/Carousel/caro3.gif" alt='discover low temperature and infusion' className='home-caro-img'></img>
                     <Carousel.Caption>
                         <div class="slide-right">
                             <h2>Low Temperature <span className='span-and' style={{ fontFamily: "of", paddingRight: "5px" }}>&</span> Infusion</h2>
