@@ -12,9 +12,9 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/admin" exact element={<Login />} />
-            <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
-            <Route path="/admin/add-product" element={<ProtectedRoute element={AddProduct} />} />
+            <Route path="/" exact element={<Login />} />
+            <Route path="/dashboard" element={<ProtectedRoute element={Dashboard} />} />
+            <Route path="/add-product" element={<ProtectedRoute element={AddProduct} />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

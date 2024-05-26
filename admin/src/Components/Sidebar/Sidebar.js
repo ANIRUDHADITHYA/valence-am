@@ -11,9 +11,9 @@ const Sidebar = () => {
                     <img src='/Asserts/icon.png'></img>
                 </div>
                 <div className='sidebar-item' style={{ marginTop: "25px" }}>
-                    <a href='/admin/dashboard'><i class="fa-solid fa-house"></i></a>
+                    <a href='/dashboard'><i class="fa-solid fa-house"></i></a>
                     <div className='icon-title-container'>
-                        <h1><a href='/admin/dashboard'>Dashboard</a></h1>
+                        <h1><a href='/dashboard'>Dashboard</a></h1>
                     </div>
                 </div>
                 <div className='sidebar-item'>
@@ -21,16 +21,16 @@ const Sidebar = () => {
                     <div className='icon-title-container'>
                         <h1><a href='#'>Products</a></h1>
                         <div className='sidebar-subitems'>
-                            <a href='/admin/add-product'>Add Product</a>
-                            <a href='#'>Update Product</a>
-                            <a href='#'>Delete Product</a>
+                            <a href='/add-product'>Add Product</a>
+                            <a href='/update-product'>Update Product</a>
+                            <a href='/delete-product'>Delete Product</a>
                         </div>
                     </div>
                 </div>
                 <div className='sidebar-item'>
-                    <a href='#'><i class="fa-solid fa-box-open"></i></a>
+                    <a href='/view-orders'><i class="fa-solid fa-box-open"></i></a>
                     <div className='icon-title-container'>
-                        <h1><a href='#'>View Orders</a></h1>
+                        <h1><a href='/view-orders'>View Orders</a></h1>
                     </div>
                 </div>
                 <div className='sidebar-item logout'>

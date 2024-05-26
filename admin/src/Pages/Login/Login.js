@@ -13,7 +13,7 @@ export default function Login() {
         e.preventDefault();
         try {
             await login(email, password);
-            navigate('/admin/dashboard');
+            navigate('/dashboard');
         } catch (error) {
             alert('Login failed');
             console.log(error)
