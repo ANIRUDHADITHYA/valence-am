@@ -88,10 +88,6 @@
     color: white;
 }
 
-.home-caro-img {
-    display: none;
-}
-
 
 
 .span-and {
@@ -119,15 +115,6 @@
     .carousel-caption {
         width: 70%;
     }
-
-    .home-caro-video {
-        display: none;
-    }
-
-    .home-caro-img {
-        display: block;
-    }
-
 
 }
 

@@ -28,7 +28,7 @@ export default function HomeCarousel() {
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
                     <video autoPlay loop muted className='home-caro-video'>
-                        <source src="/Asserts/Carousel/caro3.mp4" type="video/mp4" />
+                        <source src="/Asserts/Carousel/caro3.webm" type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                     <img src="/Asserts/Carousel/caro3.gif" alt='discover low temperature and infusion' className='home-caro-img'></img>
