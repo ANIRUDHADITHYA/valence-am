@@ -62,7 +62,7 @@ export const signinWithEmailAndPassword = async (req, res) => {
 
         res.cookie('access_token', accessToken, {
             httpOnly: true,
-            secure: true,
+            sameSite: 'Lax',
             maxAge: remember_me ? 7 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000,
         });
 
@@ -93,7 +93,7 @@ export const forgotPassword = async (req, res) => {
         const transporter = nodemailer.createTransport({
             host: 'smtpout.secureserver.net',
             port: 465,
-            secure: true,
+            sameSite: 'Lax',
             auth: {
                 user: process.env.NO_REPLY_EMAIL_ID,
                 pass: process.env.NO_REPLY_EMAIL_PASS
