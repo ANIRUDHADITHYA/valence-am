@@ -113,7 +113,7 @@ const Products = () => {
                     {filteredProducts.length ? (
                         filteredProducts.map(product => (
 
-                            <a className="product-card" key={product.index} href={`/products/${product.product_id}`}>
+                            <a className="product-card" key={product.index} href={`/products/${product.product_id}?process=${process}`}>
                                 <figure>
                                     <div className="carousel">
                                         <div className="carousel__images" >
