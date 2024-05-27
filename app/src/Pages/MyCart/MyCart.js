@@ -127,10 +127,11 @@ const MyCart = () => {
                                             <div className="prod-disc-table">
                                                 <Link to={`/products/${cartItem.product_id}`}><h1>{cartItem.product_name}</h1></Link>
                                                 <h2>{categories[cartItem.product_category_id]}</h2>
-                                                {cartItem.product_temperature ? <h5 key={index}><b>Peak Temperature:</b> {cartItem.product_temperature}</h5> : ""}
+                                                {cartItem.product_temperature ? <h5 key={index}><b>Peak Temperature:</b> {cartItem.product_temperature}°C</h5> : ""}
                                                 {cartItem.product_properties.map((prop, index) => (
                                                     <>
-                                                        <h5 key={index}><b>{prop.property_name}:</b> {prop.value}</h5>
+                                                        {prop.unit ? <h5 key={index}><b>{prop.property_name} ({prop.unit}):</b> {prop.value}</h5>
+                                                            : <h5 key={index}><b>{prop.property_name}:</b> {prop.value}</h5>}
                                                         {prop.customized && <h5>({prop.custom_value})</h5>}
                                                     </>
                                                 ))}

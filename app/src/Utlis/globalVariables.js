@@ -5,8 +5,8 @@ export const processes =
 }
 
 export const sortProcessByTemperatue = {
-    0: "ACC",
-    1: "DESC"
+    0: "DESC",
+    1: "ACC"
 }
 
 export const categories = {

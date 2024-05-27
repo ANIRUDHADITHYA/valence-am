@@ -37,7 +37,7 @@ export default function AddProduct() {
                         </div>
                         <div className='add-product-form-items-pair'>
                             <div className="form-input-lable-pair disc">
-                                <label>Product Discription</label>
+                                <label>Product Description</label>
                                 <textarea name="product_discription" value={basicData.product_discription} onChange={handleBasicDataChange}></textarea>
                                 {basicDataError.product_discription && <p className="err-msg-validation">*{basicDataError.product_discription}</p>}
                             </div>

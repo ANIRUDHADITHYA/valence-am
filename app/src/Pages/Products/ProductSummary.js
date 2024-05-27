@@ -74,12 +74,12 @@ const ProductSummary = () => {
         const handleChange = (newValue) => {
             if (newValue === "Customize") {
                 setProperty((prevState) => {
-                    const newState = [...prevState.slice(0, index), { value: "Customize", property_id: id, property_name: name, customized: true, custom_value: "" }];
+                    const newState = [...prevState.slice(0, index), { value: `Customize`, property_id: id, property_name: name, unit: unit, customized: true, custom_value: "" }];
                     return newState;
                 });
             } else {
                 setProperty((prevState) => {
-                    const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name, customized: false }];
+                    const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name, unit: unit, customized: false }];
                     return newState;
                 });
             }
@@ -113,7 +113,7 @@ const ProductSummary = () => {
             <>
                 {isPreviousSelected && (
                     <div className="prod-prop">
-                        <h3 htmlFor={id}>{name} ({unit})</h3>
+                        {unit ? <h3 htmlFor={id}>{name} ({unit})</h3> : <h3 htmlFor={id}>{name}</h3>}
                         <OutsideClickHandler onOutsideClick={() => { setShowOption(""); }}>
                             <h4 className="phy-prop-select" onClick={() => { setShowOption(id); }}>
                                 {property[index] && property[index].value ? property[index].value : `Select ${name}`}
@@ -269,8 +269,9 @@ const ProductSummary = () => {
                                                         if (index === 0) {
                                                             return true;
                                                         } else {
-                                                            const prevValue = property[index - 1];
-                                                            return prevValue && value.values[filterProduct.physical_dimensions[index - 1].id] === prevValue.value;
+                                                            return property.slice(0, index).every((prevValue, prevIndex) => {
+                                                                return prevValue && value.values[filterProduct.physical_dimensions[prevIndex].id] === prevValue.value;
+                                                            });
                                                         }
                                                     })
                                                     .map((value) => value.values[dimension.id])
@@ -290,8 +291,13 @@ const ProductSummary = () => {
                                                 <span className="plus" onClick={increaseQuantity}>+</span>
                                             </div>
                                         </div>
-                                        <button className={filterProduct.physical_dimensions.length === property.length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover"}
+                                        <button className={
+                                            property.customized
+                                                ? (filterProduct.physical_dimensions.length === property.customized_value ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
+                                                : (filterProduct.physical_dimensions.length === property.length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
+                                        }
                                             onClick={handleAddToCart}>Add to Cart</button>
+
                                     </div>
                                     <a className="prod-download-section" href={process.env.PUBLIC_URL + "/Asserts/TechnicalDatasheet/" + filterProduct.product_id + ".pdf"} target="_blank" rel="noreferrer">
                                         <i class="fa-solid fa-download"></i>
