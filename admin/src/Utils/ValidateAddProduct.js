@@ -97,9 +97,6 @@ export function ValidatePhysicalDimensionsData(physicalDimensionsData) {
         if (!dimention.name.trim()) {
             errors[`physical_dimensions[${index}].name`] = 'Invalid name.';
         }
-        else if (!nameRegex.test(dimention.name.trim())) {
-            errors[`physical_dimensions[${index}].name`] = 'Name with atmost 2 spaces.';
-        }
     });
 
     return errors;
