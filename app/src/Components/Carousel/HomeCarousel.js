@@ -27,7 +27,7 @@ export default function HomeCarousel() {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={8000}>
-                    <video autoPlay="autoplay" playsInLine="playsinline" loop="true" muted="true" className='home-caro-video'>
+                    <video autoPlay playsInline loop={true} muted={true} className='home-caro-video'>
                         <source src="/Asserts/Carousel/caro3.webm" type="video/webm" />
                         <source src="/Asserts/Carousel/caro3.mp4" type="video/mp4" />
                         Your browser does not support the video tag.

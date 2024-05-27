@@ -5,7 +5,7 @@ import "./ProductSummary.css";
 import { Link, useLocation, useParams } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useEffect } from "react";
-import { categories } from "../../Utlis/globalVariables.js"
+import { categories, imageCDN } from "../../Utlis/globalVariables.js"
 import { useContext } from "react";
 import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 import { Toaster } from "react-hot-toast";
@@ -237,7 +237,7 @@ const ProductSummary = () => {
                         <div className="ps-image-section">
                             <div className="ps-image-conatiner">
                                 <div className="ps-image-wrapper">
-                                    <img src={`/Asserts/Products/${filterProduct.product_image}.jpg`} alt="" />
+                                    <img src={`${imageCDN}/${filterProduct.product_image}.jpg`} alt="" />
                                 </div>
                             </div>
                         </div>

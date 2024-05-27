@@ -1,7 +1,7 @@
 import OutsideClickHandler from "react-outside-click-handler";
 import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
-import { processes, categories, sortProcessByTemperatue } from "../../Utlis/globalVariables.js"
+import { processes, categories, sortProcessByTemperatue, imageCDN } from "../../Utlis/globalVariables.js"
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Products.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -125,7 +125,7 @@ const Products = () => {
                                 <figure>
                                     <div className="carousel">
                                         <div className="carousel__images" >
-                                            <img src={`/Asserts/Products/${product.product_image}.jpg`} alt="" />
+                                            <img src={`${imageCDN}/${product.product_image}.jpg`} alt="" />
                                         </div>
                                     </div>
                                 </figure>

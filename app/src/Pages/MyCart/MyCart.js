@@ -7,7 +7,7 @@ import Axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextAPI/AuthContext";
 import { Toaster, toast } from "react-hot-toast";
-import { categories } from "../../Utlis/globalVariables.js"
+import { categories, imageCDN } from "../../Utlis/globalVariables.js"
 import Loader from "../../Components/Loader/Loader.js";
 
 const MyCart = () => {
@@ -121,7 +121,7 @@ const MyCart = () => {
                                 cartValues.map((cartItem, index) => (
                                     <tr key={index} className="cart-prod-wrapper">
                                         <td className="cart-prod-img-wrapper" >
-                                            <img src={`/Asserts/Products/${cartItem.product_image}.jpg`} alt="" />
+                                            <img src={`${imageCDN}/${cartItem.product_image}.jpg`} alt="" />
                                         </td>
                                         <td>
                                             <div className="prod-disc-table">

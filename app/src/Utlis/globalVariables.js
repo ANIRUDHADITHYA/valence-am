@@ -23,3 +23,4 @@ export const categories = {
     10: "Infusion Flow & Control Systems",
 }
 
+export const imageCDN = "https://cdn.valence-am.site"
