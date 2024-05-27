@@ -59,7 +59,7 @@ export const signinWithEmailAndPasswordAdmin = async (req, res) => {
         res.cookie('access_token', accessToken, {
             httpOnly: true,
             secure: true,
-            maxAge: 60 * 60 * 1000,
+            maxAge: 43200000,
         });
 
         return res.json({ status: true, message: 'Login successful!', sanitizedAdminData, last_login: admin.last_login });
