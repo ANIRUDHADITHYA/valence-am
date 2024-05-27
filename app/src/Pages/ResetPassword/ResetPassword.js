@@ -91,7 +91,7 @@ const ResetPassword = () => {
                 reverseOrder={false}
             />
             {loader ? <Loader message="Your request is being processed. Please wait..." /> : ""}
-            {!isValidToken ? (
+            {isValidToken ? (
                 <div className="forgotPasswordContainer">
                     <h1>Reset Password</h1>
                     <p>

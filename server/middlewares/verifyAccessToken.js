@@ -20,7 +20,7 @@ export const verifyAccessToken = async (req, res, next) => {
 
 export const fetchUser = async (req, res, next) => {
     try {
-        const user = await User.findById(req.userId).select('-password'); // Exclude the password
+        const user = await User.findById(req.userId).select('-password -role -reset_credentials'); // Exclude the password
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }

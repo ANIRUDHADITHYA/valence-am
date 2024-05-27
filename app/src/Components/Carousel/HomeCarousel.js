@@ -9,7 +9,7 @@ export default function HomeCarousel() {
         <div className='home-carousel-container'>
             <Carousel pause={false} controls={false} interval={5000} fade={true} >
                 <Carousel.Item interval={4000}>
-                    <img src="/Asserts/Carousel/caro1_c.jpeg" alt='discover valence'></img>
+                    <img src="/Asserts/Carousel/caro1_c.jpeg" alt='discover valence' loading="lazy"></img>
                     <Carousel.Caption className='start'>
                         <div class="slide-right">
                             <h2>House <span className='span-of' style={{ fontFamily: "of", paddingRight: "35px" }}>of</span><br /> Composite Consumables</h2>

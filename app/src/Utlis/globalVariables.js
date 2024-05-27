@@ -4,6 +4,11 @@ export const processes =
     1: "Low Temperature & Infusion",
 }
 
+export const sortProcessByTemperatue = {
+    0: "ACC",
+    1: "DESC"
+}
+
 export const categories = {
     0: "everything",
     1: "Vacuum Bagging Films",

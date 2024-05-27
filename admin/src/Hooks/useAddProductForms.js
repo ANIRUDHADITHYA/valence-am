@@ -18,7 +18,7 @@ const useAddProductForms = (Validate) => {
         product_name: '',
         category_id: 0,
         product_discription: '',
-        temperature: '',
+        temperature: 0,
     });
 
     const handleBasicDataChange = (e) => {

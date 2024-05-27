@@ -50,7 +50,7 @@ export default function AddProduct() {
                             </div>
                             <div className="form-input-lable-pair">
                                 <label>Temperature</label>
-                                <input type="text" name="temperature" value={basicData.temperature} onChange={handleBasicDataChange} />
+                                <input type="number" name="temperature" value={basicData.temperature} onChange={handleBasicDataChange} />
                             </div>
                         </div>
                         <div className='form-control-btn'>

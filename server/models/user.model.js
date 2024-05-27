@@ -7,7 +7,11 @@ const UserSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, default: "client" },
-    reset_token_used: { type: Boolean, default: false }
+    reset_credentials: [{
+        token: String,
+        requested_at: Date,
+        used: Boolean
+    }]
 })
 
 

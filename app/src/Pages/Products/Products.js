@@ -1,7 +1,7 @@
 import OutsideClickHandler from "react-outside-click-handler";
 import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
-import { processes, categories } from "../../Utlis/globalVariables.js"
+import { processes, categories, sortProcessByTemperatue } from "../../Utlis/globalVariables.js"
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Products.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -60,6 +60,14 @@ const Products = () => {
         return categoryCondition && processCondition;
     });
 
+    let sortedProducts = filteredProducts;
+
+    if (sortProcessByTemperatue[process] === "ACC") {
+        sortedProducts = filteredProducts.sort((a, b) => a.temperature - b.temperature);
+    } else if (sortProcessByTemperatue[process] === "DESC") {
+        sortedProducts = filteredProducts.sort((a, b) => b.temperature - a.temperature);
+    }
+
     return (
         <div className="products-section">
             < Navbar />
@@ -110,10 +118,10 @@ const Products = () => {
                 </div>
 
                 <div className="product-card-container">
-                    {filteredProducts.length ? (
-                        filteredProducts.map(product => (
+                    {sortedProducts.length ? (
+                        sortedProducts.map(product => (
 
-                            <a className="product-card" key={product.index} href={`/products/${product.product_id}?process=${process}`}>
+                            <Link className="product-card" key={product.index} to={`/products/${product.product_id}?process=${process}`}>
                                 <figure>
                                     <div className="carousel">
                                         <div className="carousel__images" >
@@ -131,12 +139,12 @@ const Products = () => {
                                             <div className="detail_image-wrapper">
                                                 <i class="fa-solid fa-temperature-full"></i>
                                             </div>
-                                            {product.temperature}
+                                            {product.temperature}°C
                                         </div> : <div className="details_temp-container"><div className="detail_image-wrapper"></div></div>}
                                     </div>
                                     <Link to={`/products/${product.product_id}?process=${process}`} className="productToCart">View Details</Link>
                                 </section>
-                            </a>
+                            </Link>
 
                         ))
                     ) : (

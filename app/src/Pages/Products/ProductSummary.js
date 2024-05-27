@@ -60,7 +60,7 @@ const ProductSummary = () => {
 
 
     const [property, setProperty] = useState([]);
-    const Dropdown = ({ name, id, options, index }) => {
+    const Dropdown = ({ name, id, options, index, unit }) => {
 
         const [showOption, setShowOption] = useState("");
         const [customValue, setCustomValue] = useState("");
@@ -113,7 +113,7 @@ const ProductSummary = () => {
             <>
                 {isPreviousSelected && (
                     <div className="prod-prop">
-                        <h3 htmlFor={id}>{name}</h3>
+                        <h3 htmlFor={id}>{name} ({unit})</h3>
                         <OutsideClickHandler onOutsideClick={() => { setShowOption(""); }}>
                             <h4 className="phy-prop-select" onClick={() => { setShowOption(id); }}>
                                 {property[index] && property[index].value ? property[index].value : `Select ${name}`}
@@ -252,7 +252,7 @@ const ProductSummary = () => {
                                         <div className="ps-details-data-temperature-image-wrapper">
                                             <i class="fa-solid fa-temperature-full"></i>
                                         </div>
-                                        <h1>{filterProduct.temperature}</h1>
+                                        <h1>{filterProduct.temperature}°C</h1>
                                     </div> : ""}
                                 </div>
                                 <div className="ps-details-data-body">
@@ -263,6 +263,7 @@ const ProductSummary = () => {
                                                 key={index}
                                                 name={dimension.name}
                                                 id={dimension.id}
+                                                unit={dimension.unit}
                                                 options={filterProduct.dimension_values
                                                     .filter((value) => {
                                                         if (index === 0) {

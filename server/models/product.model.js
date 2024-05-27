@@ -28,7 +28,7 @@ const productSchema = new Schema({
     product_discription: { type: String, required: true },
     product_image: { type: String, required: true, unique: true },
     display_title: { type: String, required: true },
-    temperature: { type: String, required: true },
+    temperature: { type: Number, required: true },
     physical_dimensions: [physicalDimensionSchema],
     dimension_values: [dimensionValueSchema],
     product_status: { type: Boolean, default: true }
