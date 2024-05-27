@@ -5,6 +5,7 @@ export const processes =
 }
 
 export const categories = {
+    0: "everything",
     1: "Vacuum Bagging Films",
     2: "Release Films",
     3: "Breathers & Bleeders",
@@ -15,5 +16,6 @@ export const categories = {
     8: "Resin Flow Mesh",
     9: "Infusion Tooling & Accessories",
     10: "Infusion Flow & Control Systems",
+    11: "Combinators"
 }
 

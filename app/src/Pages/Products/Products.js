@@ -47,7 +47,7 @@ const Products = () => {
         if (categoryParam < 0 || processParam < 0) {
             history("/products")
         }
-        if (categoryParam > 10 || processParam > 1) {
+        if (categoryParam > 11 || processParam > 1) {
             history("/products")
         }
 
@@ -96,6 +96,7 @@ const Products = () => {
                                 {process === 1 && <div onClick={() => { setCategory(8) }} className={category === 8 ? "product-dropdown-selected" : ""}>{categories[8]}</div>}
                                 {process === 1 && <div onClick={() => { setCategory(9) }} className={category === 9 ? "product-dropdown-selected" : ""}>{categories[9]}</div>}
                                 {process === 1 && <div onClick={() => { setCategory(10) }} className={category === 10 ? "product-dropdown-selected" : ""}>{categories[10]}</div>}
+                                {process === 1 && <div onClick={() => { setCategory(11) }} className={category === 11 ? "product-dropdown-selected" : ""}>{categories[11]}</div>}
                             </span>
 
                         </span>

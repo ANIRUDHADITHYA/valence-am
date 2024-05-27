@@ -21,6 +21,7 @@ export const categories = {
     8: "Resin Flow Mesh",
     9: "Infusion Tooling & Accessories",
     10: "Infusion Flow & Control Systems",
+    11: "Combinators"
 }
 
 export const imageCDN = "https://cdn.valence-am.site"

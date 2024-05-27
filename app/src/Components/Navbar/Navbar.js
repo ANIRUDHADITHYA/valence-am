@@ -75,6 +75,7 @@ export default function Navbar(props) {
                                 <li><Link className='hv-underline opx' to="/products?process=1&category=8" >Resin Flow Mesh</Link></li>
                                 <li><Link className='hv-underline opx' to="/products?process=1&category=9" >Infusion Tooling & Accessories</Link></li>
                                 <li><Link className='hv-underline opx' to="/products?process=1&category=10" >Infusion Flow & Control Systems</Link></li>
+                                <li><Link className='hv-underline opx' to="/products?process=1&category=11" >Combinators</Link></li>
                             </ul>
                         </li>
                         <li><Link className='hv-underline' to="/contact">Contact</Link></li>
