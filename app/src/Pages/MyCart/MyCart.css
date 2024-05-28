@@ -1,6 +1,7 @@
 .cart-section {
     position: relative;
-    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 150px;
 }
 
 .cart-container-main p {
@@ -29,9 +30,15 @@
     border-bottom: 1px solid var(--secondary-ultra-lite-color);
 }
 
+.prod-disc-table {
+    padding-left: 20px;
+}
+
 .prod-disc-table a {
     text-decoration: none;
 }
+
+
 
 .prod-disc-table h1 {
     font-size: 18px;

@@ -9,8 +9,6 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 import { Toaster } from "react-hot-toast";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Products = () => {
 

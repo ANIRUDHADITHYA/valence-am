@@ -57,6 +57,25 @@ const ProductSummary = () => {
         return cartId;
     }
 
+    const currentIndex = allProducts.findIndex(product => product.product_id === filterProduct.product_id);
+
+    let nextProduct = null;
+    let prevProduct = null;
+
+    for (let i = currentIndex + 1; i < allProducts.length; i++) {
+        if (allProducts[i].category_id === filterProduct.category_id) {
+            nextProduct = allProducts[i];
+            break;
+        }
+    }
+
+    for (let i = currentIndex - 1; i >= 0; i--) {
+        if (allProducts[i].category_id === filterProduct.category_id) {
+            prevProduct = allProducts[i];
+            break;
+        }
+    }
+
 
 
     const [property, setProperty] = useState([]);
@@ -229,8 +248,16 @@ const ProductSummary = () => {
                             <li><Link to="#">{filterProduct.display_title}</Link></li>
                         </ul>
                         <div className="ps-nav-container-pn">
-                            <Link to="/#">PREV</Link>
-                            <Link to="/#">NEXT</Link>
+                            {prevProduct ? (
+                                <Link to={`/products/${prevProduct.product_id}?process=${currentProcess}`}>PREV</Link>
+                            ) : (
+                                <span style={{ visibility: 'hidden' }}>PREV</span>
+                            )}
+                            {nextProduct ? (
+                                <Link to={`/products/${nextProduct.product_id}?process=${currentProcess}`}>NEXT</Link>
+                            ) : (
+                                <span style={{ visibility: 'hidden' }}>NEXT</span>
+                            )}
                         </div>
                     </div>
                     <div className="ps-details-container">

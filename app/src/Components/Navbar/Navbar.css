@@ -220,6 +220,10 @@
     margin: 0;
 }
 
+.nav-display-user-details {
+    position: relative;
+}
+
 
 .nav-logout-btn {
     position: absolute;
