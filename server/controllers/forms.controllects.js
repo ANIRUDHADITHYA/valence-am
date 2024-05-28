@@ -133,6 +133,7 @@ const generateTicketId = () => {
 };
 
 
+
 export const createTicket = async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
@@ -142,6 +143,13 @@ export const createTicket = async (req, res) => {
     const timestamp = Date.now();
 
     try {
+        const ticketCount = await Ticket.countDocuments({ email, timestamp: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } });
+
+        if (ticketCount >= 2) {
+            return res.status(400).json({ status: false, message: 'Your email has already reached us. please try replying to the acknowledgment email sent you you.' });
+        }
+
+
         const newTicket = new Ticket({
             name,
             email,
@@ -155,12 +163,14 @@ export const createTicket = async (req, res) => {
 
         await sendEmailToUser(req.body.email, `Received your Feedback - acknowledge number: ${ticket_id}`, newTicket);
         await sendEmailToEnquiry(`Received New Get In Touch Record - acknowledge number: ${ticket_id}`, newTicket);
+
         return res.status(201).json({ status: true, message: 'Ticket created successfully', ticket_id: ticket_id });
     } catch (error) {
         console.error('Error creating ticket:', error);
         return res.status(500).json({ status: false, message: 'Error creating ticket', error: error.message });
     }
 };
+
 
 export const createBASTicket = async (req, res) => {
     const { name, company_name, email, phone, company_website, message } = req.body;

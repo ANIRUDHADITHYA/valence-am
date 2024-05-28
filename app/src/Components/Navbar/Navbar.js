@@ -37,9 +37,9 @@ export default function Navbar(props) {
                 <div className='navbar-container'>
 
                     <div className='nav-items start'>
-                        <a className='nav-logo-wrapper' href='/'>
+                        <Link className='nav-logo-wrapper' to='/'>
                             <img src="/Asserts/logo.png" alt='logo'></img>
-                        </a>
+                        </Link>
                     </div>
                     <ul className='nav-items mid'>
                         <li><Link className='hv-underline' to="/about">About</Link></li>
@@ -104,9 +104,9 @@ export default function Navbar(props) {
                     <div className='nav-mobile-header'>
                         <i class="fa-solid fa-bars" onClick={() => { setMobileNavbar(true) }}></i>
                         <div className='nav-mobile-logo'>
-                            <a className='nav-mobile-logo-wrapper' href='/'>
+                            <Link className='nav-mobile-logo-wrapper' to='/'>
                                 <img src="/Asserts/logo.png" alt='logo'></img>
-                            </a>
+                            </Link>
                         </div>
                         <div className='nav-mobile-cart'>
                             <Link className="cart-wrapper" to="/my-cart">

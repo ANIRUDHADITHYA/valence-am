@@ -130,9 +130,9 @@ const MyCart = () => {
                                                 {cartItem.product_temperature ? <h5 key={index}><b>Peak Temperature:</b> {cartItem.product_temperature}°C</h5> : ""}
                                                 {cartItem.product_properties.map((prop, index) => (
                                                     <>
-                                                        {prop.unit ? <h5 key={index}><b>{prop.property_name} ({prop.unit}):</b> {prop.value}</h5>
+                                                        {prop.unit ? <h5 key={index}><b>{prop.property_name}: </b>{prop.value} {prop.unit}</h5>
                                                             : <h5 key={index}><b>{prop.property_name}:</b> {prop.value}</h5>}
-                                                        {prop.customized && <h5>({prop.custom_value})</h5>}
+                                                        {prop.customized && <h5>({prop.unit ? `${prop.custom_value} ${prop.unit}` : prop.custom_value})</h5>}
                                                     </>
                                                 ))}
                                             </div>

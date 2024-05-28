@@ -14,12 +14,14 @@ import ResetPassword from './Pages/ResetPassword/ResetPassword';
 import { AuthProvider } from './ContextAPI/AuthContext';
 import { ProductsProvider } from './ContextAPI/ProductsContext';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
+import ScrollToTop from './Utlis/ScrollToTop';
 
 function App() {
   return (
     <ProductsProvider>
       <BrowserRouter>
         <AuthProvider>
+          <ScrollToTop />
           <Routes>
             <Route path="/" exact element={<Homepage />} />
             <Route path="/about" exact element={<About />} />

@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
 import { Toaster } from "react-hot-toast";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Products = () => {
 
@@ -78,7 +80,7 @@ const Products = () => {
             <div className="products-container">
                 <h1 className="product-title">Products</h1>
                 <div className="product-header-container">
-                    <h2>You're looking for
+                    <h2>You're looking at
                         <span class="product-dropdown">
 
                             <OutsideClickHandler onOutsideClick={() => { setEverythingClick(false) }}>
@@ -118,41 +120,35 @@ const Products = () => {
                     </h2>
                 </div>
 
-                <div className="product-card-container">
-                    {sortedProducts.length ? (
-                        sortedProducts.map(product => (
-
-                            <Link className="product-card" key={product.index} to={`/products/${product.product_id}?process=${process}`}>
-                                <figure>
-                                    <div className="carousel">
-                                        <div className="carousel__images" >
+                <div class="container">
+                    <div class="row">
+                        {sortedProducts.length ? (
+                            sortedProducts.map(product => (
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5" key={product.index}>
+                                    <Link className="product-card" key={product.index} to={`/products/${product.product_id}?process=${process}`}>
+                                        <div className="product-card-img">
                                             <img src={`${imageCDN}/${product.product_image}.jpg`} alt="" />
                                         </div>
-                                    </div>
-                                </figure>
-                                <section className="product-card-space">
-                                </section>
-                                <section className="details">
-                                    <div className="min-details">
-                                        <h1>{product.display_title}</h1>
-                                        <h2>{categories[product.category_id]}</h2>
-                                        {product.temperature ? <div className="details_temp-container">
-                                            <div className="detail_image-wrapper">
-                                                <i class="fa-solid fa-temperature-full"></i>
+                                        <div className="min-details">
+                                            <div className="products-card-title-container">
+                                                <h1>{product.display_title}</h1>
+                                                <h2>{categories[product.category_id]}</h2>
                                             </div>
-                                            {product.temperature}°C
-                                        </div> : <div className="details_temp-container"><div className="detail_image-wrapper"></div></div>}
-                                    </div>
-                                    <Link to={`/products/${product.product_id}?process=${process}`} className="productToCart">View Details</Link>
-                                </section>
-                            </Link>
+                                            {product.temperature ? <div className="products-card-temp-container">
+                                                <i class="fa-solid fa-temperature-full"></i>
+                                                <h2>{product.temperature}°C</h2>
+                                            </div> : ""}
+                                        </div>
+                                    </Link>
+                                </div>
 
-                        ))
-                    ) : (
-                        <div className="filter-no-pro">
-                            <h1>Sorry! No Products Found.</h1>
-                        </div>
-                    )}
+                            ))
+                        ) : (
+                            <div className="filter-no-pro">
+                                <h1>Sorry! No Products Found.</h1>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <Footer />

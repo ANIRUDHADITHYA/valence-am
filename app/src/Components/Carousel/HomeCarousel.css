@@ -58,7 +58,7 @@
 .slide-right h2 {
     animation: 0.5s slide-right 0.5s forwards;
     transform: translateX(-100%);
-    font-size: 82px;
+    font-size: 72px;
     font-weight: 600;
     padding-bottom: 15px;
     line-height: 1em;
