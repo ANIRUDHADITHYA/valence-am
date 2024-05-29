@@ -209,8 +209,8 @@ const sendEmail = async (to, subject, order_detail, user) => {
                         <img src=https://cdn.valence-am.site/${orderItem.product_id}.jpg alt=${orderItem.product_id}>
                         <div class="product-details-container">
                         <div class="product-details" style="flex: 1;">
-                                <h1>VAL GAGUE ANALOG</h1>
-                                <h2>Vacuum Valves & Hoses</h2>
+                                <h1>${orderItem.product_name}</h1>
+                                <h2>${orderItem.product_category}</h2>
                         ${orderItem.product_properties.map(prop => `
                         
                                 <h3><b>${prop.property_name}:</b> ${prop.value} ${prop.unit}</h3>

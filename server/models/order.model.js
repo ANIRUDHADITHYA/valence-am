@@ -11,6 +11,7 @@ const productPropertySchema = new Schema({
 
 const orderSchema = new Schema({
     product_id: String,
+    product_name: String,
     quantity: Number,
     product_category: String,
     product_properties: [productPropertySchema]

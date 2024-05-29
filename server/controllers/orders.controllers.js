@@ -8,7 +8,6 @@ const generateOrderId = () => {
 
 export const createOrder = async (req, res) => {
     const cartValues = req.body.cartValues;
-
     try {
         const user = req.user;
         const user_id = req.userId;
@@ -17,6 +16,7 @@ export const createOrder = async (req, res) => {
 
         const orders = cartValues.map(cartItem => ({
             product_id: cartItem.product_id,
+            product_name: cartItem.product_name,
             quantity: cartItem.quantity,
             product_category: cartItem.product_category,
             product_properties: cartItem.product_properties

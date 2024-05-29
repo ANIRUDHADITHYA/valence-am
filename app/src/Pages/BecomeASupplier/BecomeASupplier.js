@@ -9,7 +9,7 @@ import Loader from '../../Components/Loader/Loader';
 import { Helmet } from 'react-helmet';
 
 export default function BecomeASupplier() {
-    const { values, valuesError, loader, responseMessage, handleValueChange, handleSubmit } = useBecomeASupplierForm(ValidateBecomeASupplier);
+    const { values, valuesError, loader, handleValueChange, handleSubmit } = useBecomeASupplierForm(ValidateBecomeASupplier);
     return (
         <>
             <Helmet>
