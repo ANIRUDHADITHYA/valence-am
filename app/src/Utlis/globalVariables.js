@@ -24,4 +24,4 @@ export const categories = {
     11: "Combinators"
 }
 
-export const imageCDN = "https://cdn.valence-am.site"
+export const imageCDN = "https://cdn-images.valence-am.com"
