@@ -96,7 +96,7 @@ const sendEmailToUser = async (to, subject, ticketDetails) => {
     <body>
         <div class="email-container">
             <div class="logo-wrapper">
-                <img src="https://firebasestorage.googleapis.com/v0/b/valence-am-d9394.appspot.com/o/image-6.png?alt=media&token=cad2cb37-e4b6-4f37-bb93-09d360398201"
+                <img src="https://cdn-images.valence-am.com/logo.png"
                     alt="Valence">
             </div>
             <div class="content-container">
@@ -114,7 +114,7 @@ const sendEmailToUser = async (to, subject, ticketDetails) => {
                 <p>Thanks,<br>The Valence Team</p>
             </div>
             <div class="footer-wrapper">
-                <img src="https://firebasestorage.googleapis.com/v0/b/valence-am-d9394.appspot.com/o/2024_Email_Template.jpg?alt=media&token=ed536332-9302-4fe2-bf2b-99a5880b7d07"
+                <img src="https://cdn-images.valence-am.com/email-footer.jpg"
                     alt="House of Composite Consumables">
             </div>
         </div>

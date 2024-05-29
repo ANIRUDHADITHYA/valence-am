@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 const sendEmail = async (to, subject, name, url) => {
 
-  const templete = `
+    const templete = `
   <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +87,7 @@ const sendEmail = async (to, subject, name, url) => {
 <body>
     <div class="email-container">
         <div class="logo-wrapper">
-            <img src="https://firebasestorage.googleapis.com/v0/b/valence-am-d9394.appspot.com/o/image-6.png?alt=media&token=cad2cb37-e4b6-4f37-bb93-09d360398201"
+            <img src="https://cdn-images.valence-am.com/logo.png"
                 alt="Valence">
         </div>
         <div class="content-container">
@@ -104,7 +104,7 @@ const sendEmail = async (to, subject, name, url) => {
             <p>Thanks,<br>The Valence Team</p>
         </div>
         <div class="footer-wrapper">
-            <img src="https://firebasestorage.googleapis.com/v0/b/valence-am-d9394.appspot.com/o/2024_Email_Template.jpg?alt=media&token=ed536332-9302-4fe2-bf2b-99a5880b7d07"
+            <img src="https://cdn-images.valence-am.com/email-footer.jpg"
                 alt="House of Composite Consumables">
         </div>
     </div>
@@ -114,29 +114,29 @@ const sendEmail = async (to, subject, name, url) => {
     `;
 
 
-  try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtpout.secureserver.net',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.NO_REPLY_EMAIL_ID,
-        pass: process.env.NO_REPLY_EMAIL_PASS
-      }
-    });
+    try {
+        const transporter = nodemailer.createTransport({
+            host: 'smtpout.secureserver.net',
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.NO_REPLY_EMAIL_ID,
+                pass: process.env.NO_REPLY_EMAIL_PASS
+            }
+        });
 
-    const mailOptions = {
-      from: process.env.NO_REPLY_EMAIL_ID,
-      to,
-      subject,
-      html: templete
-    };
+        const mailOptions = {
+            from: process.env.NO_REPLY_EMAIL_ID,
+            to,
+            subject,
+            html: templete
+        };
 
-    await transporter.sendMail(mailOptions);
-  } catch (error) {
-    console.log(error.message)
-    throw new Error(`Error sending email: ${error.message}`);
-  }
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.log(error.message)
+        throw new Error(`Error sending email: ${error.message}`);
+    }
 };
 
 export { sendEmail as sendResetEmail }
