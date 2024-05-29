@@ -141,6 +141,10 @@
     mix-blend-mode: multiply;
 }
 
+.product-card:hover img {
+    mix-blend-mode: normal;
+}
+
 .min-details {
     padding: 15px 15px;
     display: flex;

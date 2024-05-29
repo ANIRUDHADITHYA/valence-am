@@ -213,8 +213,8 @@ const sendEmail = async (to, subject, order_detail, user) => {
                                 <h2>${orderItem.product_category}</h2>
                         ${orderItem.product_properties.map(prop => `
                         
-                                <h3><b>${prop.property_name}:</b> ${prop.value} ${prop.unit}</h3>
-                            
+                                <h3><b>${prop.property_name}:</b> ${prop.value} ${prop.unit} <br>${prop.custom_value}</br></h3>
+                               
                             `).join('')}
                             </div>
                             <div class="qty-class" style="flex: 1;">

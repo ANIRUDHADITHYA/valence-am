@@ -98,7 +98,7 @@ const ProductSummary = () => {
                 });
             } else {
                 setProperty((prevState) => {
-                    const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name, unit: unit, customized: false }];
+                    const newState = [...prevState.slice(0, index), { value: newValue, property_id: id, property_name: name, unit: unit, customized: false, custom_value: "" }];
                     return newState;
                 });
             }
@@ -229,6 +229,8 @@ const ProductSummary = () => {
         }
     }
 
+    console.log(property)
+
 
 
     return (
@@ -319,8 +321,8 @@ const ProductSummary = () => {
                                             </div>
                                         </div>
                                         <button className={
-                                            property.customized
-                                                ? (filterProduct.physical_dimensions.length === property.customized_value ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
+                                            property.filter(prop => prop.customized === true).length
+                                                ? (property.filter(prop => prop.customized === true).length === property.filter(prop => prop.custom_value).length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
                                                 : (filterProduct.physical_dimensions.length === property.length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
                                         }
                                             onClick={handleAddToCart}>Add to Cart</button>
