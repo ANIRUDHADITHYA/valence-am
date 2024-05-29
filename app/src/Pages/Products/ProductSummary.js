@@ -197,7 +197,7 @@ const ProductSummary = () => {
                         product_id: filterProduct.product_id,
                         product_image: filterProduct.product_image,
                         product_name: filterProduct.display_title,
-                        product_category: filterProduct.category_id,
+                        product_category: categories[filterProduct.category_id],
                         product_temperature: filterProduct.temperature,
                         quantity: quantity,
                         product_properties: property
@@ -209,7 +209,7 @@ const ProductSummary = () => {
                     product_id: filterProduct.product_id,
                     product_image: filterProduct.product_image,
                     product_name: filterProduct.display_title,
-                    product_category: filterProduct.category_id,
+                    product_category: categories[filterProduct.category_id],
                     product_temperature: filterProduct.temperature,
                     quantity: quantity,
                     product_properties: property

@@ -145,7 +145,7 @@ export const forgotPassword = async (req, res) => {
         const resetUrl = `${process.env.PRIMARY_HOST_URL}/reset-password/${encodedToken}`;
 
 
-        await sendResetEmail(email, 'Reset Password', resetUrl);
+        await sendResetEmail(email, 'Reset Password', user.name, resetUrl);
 
 
         await user.save();

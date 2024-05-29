@@ -7,7 +7,7 @@ import Axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../ContextAPI/AuthContext";
 import { Toaster, toast } from "react-hot-toast";
-import { categories, imageCDN } from "../../Utlis/globalVariables.js"
+import { imageCDN } from "../../Utlis/globalVariables.js"
 import Loader from "../../Components/Loader/Loader.js";
 
 const MyCart = () => {
@@ -126,7 +126,7 @@ const MyCart = () => {
                                         <td>
                                             <div className="prod-disc-table">
                                                 <Link to={`/products/${cartItem.product_id}`}><h1>{cartItem.product_name}</h1></Link>
-                                                <h2>{categories[cartItem.product_category_id]}</h2>
+                                                <h2>{cartItem.product_category}</h2>
                                                 {cartItem.product_temperature ? <h5 key={index}><b>Peak Temperature:</b> {cartItem.product_temperature}°C</h5> : ""}
                                                 {cartItem.product_properties.map((prop, index) => (
                                                     <>
@@ -195,7 +195,7 @@ const MyCart = () => {
                                     <h1>Thank You!</h1>
                                     <p>Your exclusive offer and tailored requirements are about to hit your
                                         inbox – keep an eye out for them in your registered email!</p>
-                                    <p style={{ color: "var(--primary-color)", paddingTop: "10px" }}><b>Your Order ID is {orderId}</b></p>
+                                    <p style={{ color: "var(--primary-color)", paddingTop: "10px" }}><b>Your Order No is {orderId}</b></p>
                                 </div>
                             </div>
                         </div> : "" : ""

@@ -5,187 +5,194 @@ import useGetInTouchForm from "../../Hooks/useGetInTouchForm";
 import ValidateGetinTouch from "../../Utlis/ValidateGetinTouch";
 import "./Contact.css";
 import Loader from "../../Components/Loader/Loader";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
     const { values, valuesError, loader, handleValueChange, handleSubmit } = useGetInTouchForm(ValidateGetinTouch);
     return (
-        <div className="contact-main">
-            <Navbar />
-            <Toaster
-                position="top-left"
-                reverseOrder={false}
-            />
-            <div className="page-titles">
-                <div className="entry-titles">
-                    Contact
+        <>
+            <Helmet>
+                <title>Valence | Contact</title>
+                <meta name="description" content="Let's Forge Success Together!" />
+            </Helmet>
+            <div className="contact-main">
+                <Navbar />
+                <Toaster
+                    position="top-left"
+                    reverseOrder={false}
+                />
+                <div className="page-titles">
+                    <div className="entry-titles">
+                        Contact
+                    </div>
+                    <div className="entry-subtitles">
+                        <p>We are here to serve you!</p>
+                    </div>
                 </div>
-                <div className="entry-subtitles">
-                    <p>We are here to serve you!</p>
+                <div className="contact-gmap">
+                    {// eslint-disable-next-line
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.154202934989!2d77.60055677457713!3d13.08941191228541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae174d95af27ad%3A0x11ca21cd71d9401!2sValence%20Advanced%20Materials%20Private%20Limited!5e0!3m2!1sen!2sin!4v1715736987990!5m2!1sen!2sin"
+                            style={{ border: 0 }}
+                            allowfullscreen=""
+                            loading="eager"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    }
                 </div>
-            </div>
-            <div className="contact-gmap">
-                {// eslint-disable-next-line
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.154202934989!2d77.60055677457713!3d13.08941191228541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae174d95af27ad%3A0x11ca21cd71d9401!2sValence%20Advanced%20Materials%20Private%20Limited!5e0!3m2!1sen!2sin!4v1715736987990!5m2!1sen!2sin"
-                        style={{ border: 0 }}
-                        allowfullscreen=""
-                        loading="eager"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                }
-            </div>
-            <div className='contactInformation'>
-                <div className='contactMainContainer'>
-                    <h1>Contact Information</h1>
-                    <table className='contactMainTable'>
-                        <tbody>
-                            <tr id="contact-address-tr">
-                                <td valign="top" className='contactTableHeading mainAddress'>
-                                    <div className='india-Office'>
-                                        <h4>INDIA</h4>
-                                        <p>Registered Office</p>
-                                    </div>
-                                </td>
-                                <td valign="top">
-                                    <table className='contactSubTable'>
-                                        <tbody>
-                                            <tr>
-                                                <td className='contactTableSubHeading' valign="top"><h5>ADDRESS</h5></td>
-                                                <td>
-                                                    <p>
-                                                        <a target="_blank" rel="noreferrer" href={"https://www.google.com/maps/place/Valence+Advanced+Materials+Private+Limited/@13.0894067,77.6031317,15z/data=!4m2!3m1!1s0x0:0x11ca21cd71d9401?sa=X&ved=2ahUKEwjW8qbn_8-CAxWRSWwGHbDpApMQ_BJ6BAg5EAA"}>
-                                                            Valence Advanced Materials Private Limited<br></br>
-                                                            # 223, 3rd B Phase L/O, Shivanahalli (V), Yelahanka (H),<br /> Bangalore - 560 064, Karnataka, India<br></br>
-                                                        </a>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className='contactTableSubHeading' valign="top"><h5>CIN</h5></td>
-                                                <td>
-                                                    <p>
-                                                        U51909KA2020PTC132570
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className='contactTableSubHeading' valign="top"><h5>GST</h5></td>
-                                                <td>
-                                                    <p>
-                                                        29AAHCV3120A1ZR
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className='contactTableSubHeading' valign="top"><h5>PHONE</h5></td>
-                                                <td><p><a href="tel:+919353784714">+91 9353 78 4714</a></p></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='contactTableSubHeading' valign="top"><h5>EMAIL</h5></td>
-                                                <td>
-                                                    <p>
-                                                        <a href="mailto:enquiry@valence-am.com">enquiry@valence-am.com</a>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr id="contact-social-tr">
-                                <td className='contactTableHeading'>
-                                    <h4 className="social">SOCIAL MEDIA</h4>
-                                </td>
-                                <td>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className="contact-us-social"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/valence-advanced-materials/"><i class="fa-brands fa-linkedin-in"></i></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
+                <div className='contactInformation'>
+                    <div className='contactMainContainer'>
+                        <h1>Contact Information</h1>
+                        <table className='contactMainTable'>
+                            <tbody>
+                                <tr id="contact-address-tr">
+                                    <td valign="top" className='contactTableHeading mainAddress'>
+                                        <div className='india-Office'>
+                                            <h4>INDIA</h4>
+                                            <p>Registered Office</p>
+                                        </div>
+                                    </td>
+                                    <td valign="top">
+                                        <table className='contactSubTable'>
+                                            <tbody>
+                                                <tr>
+                                                    <td className='contactTableSubHeading' valign="top"><h5>ADDRESS</h5></td>
+                                                    <td>
+                                                        <p>
+                                                            <a target="_blank" rel="noreferrer" href={"https://www.google.com/maps/place/Valence+Advanced+Materials+Private+Limited/@13.0894067,77.6031317,15z/data=!4m2!3m1!1s0x0:0x11ca21cd71d9401?sa=X&ved=2ahUKEwjW8qbn_8-CAxWRSWwGHbDpApMQ_BJ6BAg5EAA"}>
+                                                                Valence Advanced Materials Private Limited<br></br>
+                                                                # 223, 3rd B Phase L/O, Shivanahalli (V), Yelahanka (H),<br /> Bangalore - 560 064, Karnataka, India<br></br>
+                                                            </a>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='contactTableSubHeading' valign="top"><h5>CIN</h5></td>
+                                                    <td>
+                                                        <p>
+                                                            U51909KA2020PTC132570
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='contactTableSubHeading' valign="top"><h5>GST</h5></td>
+                                                    <td>
+                                                        <p>
+                                                            29AAHCV3120A1ZR
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='contactTableSubHeading' valign="top"><h5>PHONE</h5></td>
+                                                    <td><p><a href="tel:+919353784714">+91 9353 78 4714</a></p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='contactTableSubHeading' valign="top"><h5>EMAIL</h5></td>
+                                                    <td>
+                                                        <p>
+                                                            <a href="mailto:enquiry@valence-am.com">enquiry@valence-am.com</a>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr id="contact-social-tr">
+                                    <td className='contactTableHeading'>
+                                        <h4 className="social">SOCIAL MEDIA</h4>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="contact-us-social"><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/valence-advanced-materials/"><i class="fa-brands fa-linkedin-in"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
 
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div className='getInTouchSection'>
-                        <div className='getInTouchSectionContainer'>
-                            <h1>Get In Touch</h1>
-                            {loader ?
-                                <Loader message={"Your request is being processed. Please wait..."} />
-                                : ""}
-                            <div className='getInTouchBody'>
-                                <div className='contact-input-pair'>
-                                    <div className="contact-input-pair-wrapper">
-                                        <div className="floating-label-group">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                name="name"
-                                                autoComplete="off"
-                                                value={values.name}
-                                                onChange={handleValueChange}
-                                                required />
-                                            <label className="floating-label">Name</label>
-                                            {valuesError.name && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.name}</span>}
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className='getInTouchSection'>
+                            <div className='getInTouchSectionContainer'>
+                                <h1>Get In Touch</h1>
+                                {loader ?
+                                    <Loader message={"Your request is being processed. Please wait..."} />
+                                    : ""}
+                                <div className='getInTouchBody'>
+                                    <div className='contact-input-pair'>
+                                        <div className="contact-input-pair-wrapper">
+                                            <div className="floating-label-group">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="name"
+                                                    autoComplete="off"
+                                                    value={values.name}
+                                                    onChange={handleValueChange}
+                                                    required />
+                                                <label className="floating-label">Name</label>
+                                                {valuesError.name && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.name}</span>}
+                                            </div>
+                                        </div>
+                                        <div className="floating-label-group-space">
+                                        </div>
+                                        <div className="contact-input-pair-wrapper">
+                                            <div className="floating-label-group">
+                                                <input
+                                                    type="text"
+                                                    id="email"
+                                                    name="email"
+                                                    className="form-control"
+                                                    autoComplete="off"
+                                                    value={values.email}
+                                                    onChange={handleValueChange}
+                                                    required />
+                                                <label className="floating-label">Email</label>
+                                                {valuesError.email && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.email}</span>}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="floating-label-group-space">
-                                    </div>
-                                    <div className="contact-input-pair-wrapper">
-                                        <div className="floating-label-group">
-                                            <input
-                                                type="text"
-                                                id="email"
-                                                name="email"
-                                                className="form-control"
-                                                autoComplete="off"
-                                                value={values.email}
-                                                onChange={handleValueChange}
-                                                required />
-                                            <label className="floating-label">Email</label>
-                                            {valuesError.email && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.email}</span>}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="floating-label-group">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        autoComplete="off"
-                                        name="subject"
-                                        value={values.subject}
-                                        onChange={handleValueChange}
-                                        required />
-                                    <label className="floating-label">Subject</label>
-                                    {valuesError.subject && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.subject}</span>}
-                                </div>
-                                <div className="textAreaContactSection">
-                                    <div class="floating-label-group">
-                                        <textarea
+                                    <div className="floating-label-group">
+                                        <input
                                             type="text"
                                             className="form-control"
                                             autoComplete="off"
-                                            name="message"
-                                            value={values.message}
+                                            name="subject"
+                                            value={values.subject}
                                             onChange={handleValueChange}
-                                            required >
-                                        </textarea>
-                                        <label className="floating-label">Message</label>
-                                        {valuesError.message && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.message}</span>}
+                                            required />
+                                        <label className="floating-label">Subject</label>
+                                        {valuesError.subject && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.subject}</span>}
                                     </div>
-                                </div>
-                                <div className='floating-label-group-button'>
-                                    <button onClick={handleSubmit}>Send Message</button>
+                                    <div className="textAreaContactSection">
+                                        <div class="floating-label-group">
+                                            <textarea
+                                                type="text"
+                                                className="form-control"
+                                                autoComplete="off"
+                                                name="message"
+                                                value={values.message}
+                                                onChange={handleValueChange}
+                                                required >
+                                            </textarea>
+                                            <label className="floating-label">Message</label>
+                                            {valuesError.message && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.message}</span>}
+                                        </div>
+                                    </div>
+                                    <div className='floating-label-group-button'>
+                                        <button onClick={handleSubmit}>Send Message</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </>
     )
 }
 

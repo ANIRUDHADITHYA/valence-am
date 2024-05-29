@@ -5,13 +5,14 @@ const productPropertySchema = new Schema({
     property_id: String,
     property_name: String,
     customized: { type: Boolean, default: false },
-    custom_value: String
+    custom_value: String,
+    unit: String,
 });
 
 const orderSchema = new Schema({
     product_id: String,
     quantity: Number,
-    product_category: Number,
+    product_category: String,
     product_properties: [productPropertySchema]
 });
 
