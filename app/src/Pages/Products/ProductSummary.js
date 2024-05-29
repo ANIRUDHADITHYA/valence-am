@@ -326,7 +326,8 @@ const ProductSummary = () => {
                                             onClick={handleAddToCart}>Add to Cart</button>
 
                                     </div>
-                                    <a className="prod-download-section" href={process.env.PUBLIC_URL + "/Asserts/TechnicalDatasheet/" + filterProduct.product_id + ".pdf"} target="_blank" rel="noreferrer">
+                                    <a className="prod-download-section" href="#" //</div></div>target="_blank" 
+                                        rel="noreferrer">
                                         <i class="fa-solid fa-download"></i>
                                         <p>Download Technical Datasheet</p>
                                     </a>
