@@ -279,6 +279,7 @@
     align-items: center;
     padding-top: 40px;
     text-decoration: none;
+    width: fit-content;
 }
 
 .prod-download-section p {
