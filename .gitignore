@@ -3,6 +3,8 @@ app/node_modules/
 server/node_modules/
 admin/node_modules/
 
+Project\ Dependencies
+
 # Ignore environment variable files
 app/.env
 server/.env

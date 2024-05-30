@@ -28,7 +28,6 @@ const ProductSummary = () => {
         setQuantity(quantity + 1);
     };
 
-
     const { productID } = useParams();
 
     const [currentProcess, setCurrentProcess] = useState(0);
@@ -45,8 +44,6 @@ const ProductSummary = () => {
     }, [params.get("process")]);
 
     const filterProduct = allProducts.filter(product => product.product_id === productID)[0];
-
-
 
     function generateCartId() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -76,14 +73,12 @@ const ProductSummary = () => {
         }
     }
 
-
-
     const [property, setProperty] = useState([]);
     const Dropdown = ({ name, id, options, index, unit }) => {
 
         const [showOption, setShowOption] = useState("");
         const [customValue, setCustomValue] = useState("");
-        const [custemError, setCustomError] = useState("")
+        const [customError, setCustomError] = useState("")
 
         const isPreviousSelected =
             index === 0 ||
@@ -124,9 +119,7 @@ const ProductSummary = () => {
                     return newState;
                 });
             }
-
         }
-
 
         return (
             <>
@@ -164,7 +157,7 @@ const ProductSummary = () => {
                                         <button onClick={handleAddCustom}>ADD</button>
                                     )}
                                 </div>
-                                {custemError && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{custemError}</span>}
+                                {customError && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{customError}</span>}
                             </>
                         )}
                     </div>
@@ -173,10 +166,8 @@ const ProductSummary = () => {
         );
     };
 
-
     function handleAddToCart() {
         if (filterProduct.physical_dimensions.length === property.length) {
-
             const existingCartValuesJSON = localStorage.getItem('cartValues');
             let cartValues = [];
 
@@ -229,24 +220,29 @@ const ProductSummary = () => {
         }
     }
 
-    console.log(property)
-
-
+    const isButtonHoverable = () => {
+        if (filterProduct.physical_dimensions.length !== property.length) {
+            return false;
+        }
+        for (let prop of property) {
+            if (prop.customized && !prop.custom_value) {
+                return false;
+            }
+        }
+        return true;
+    };
 
     return (
         <div className="product-page-main">
             <Navbar />
-            <Toaster
-                position="top-left"
-                reverseOrder={false}
-            />
-            {filterProduct ?
+            <Toaster position="top-left" reverseOrder={false} />
+            {filterProduct ? (
                 <div className="product-summary-container">
                     <div className="product-summary-header">
                         <ul className="ps-nav-container">
-                            <li><Link to="/">Home</Link><i class="fa-solid fa-angle-right"></i></li>
-                            <li><Link to="/products">Products</Link><i class="fa-solid fa-angle-right"></i></li>
-                            <li><Link to={`/products?process=${currentProcess}&category=${filterProduct.category_id}`}>{categories[filterProduct.category_id]}</Link><i class="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="/">Home</Link><i className="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="/products">Products</Link><i className="fa-solid fa-angle-right"></i></li>
+                            <li><Link to={`/products?process=${currentProcess}&category=${filterProduct.category_id}`}>{categories[filterProduct.category_id]}</Link><i className="fa-solid fa-angle-right"></i></li>
                             <li><Link to="#">{filterProduct.display_title}</Link></li>
                         </ul>
                         <div className="ps-nav-container-pn">
@@ -277,12 +273,14 @@ const ProductSummary = () => {
                                         <h1>{filterProduct.display_title}</h1>
                                         <h2>{categories[filterProduct.category_id]}</h2>
                                     </div>
-                                    {filterProduct.temperature ? <div className="ps-details-data-temperature">
-                                        <div className="ps-details-data-temperature-image-wrapper">
-                                            <i class="fa-solid fa-temperature-full"></i>
+                                    {filterProduct.temperature ? (
+                                        <div className="ps-details-data-temperature">
+                                            <div className="ps-details-data-temperature-image-wrapper">
+                                                <i className="fa-solid fa-temperature-full"></i>
+                                            </div>
+                                            <h1>{filterProduct.temperature}°C</h1>
                                         </div>
-                                        <h1>{filterProduct.temperature}°C</h1>
-                                    </div> : ""}
+                                    ) : ""}
                                 </div>
                                 <div className="ps-details-data-body">
                                     <p>{filterProduct.product_discription}</p>
@@ -308,7 +306,6 @@ const ProductSummary = () => {
                                                 }
                                                 index={index}
                                             />
-
                                         ))}
                                     </div>
                                     <div className="ps-button-wrapper">
@@ -320,29 +317,26 @@ const ProductSummary = () => {
                                                 <span className="plus" onClick={increaseQuantity}>+</span>
                                             </div>
                                         </div>
-                                        <button className={
-                                            property.filter(prop => prop.customized === true).length
-                                                ? (property.filter(prop => prop.customized === true).length === property.filter(prop => prop.custom_value).length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
-                                                : (filterProduct.physical_dimensions.length === property.length ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover")
-                                        }
-                                            onClick={handleAddToCart}>Add to Cart</button>
-
+                                        <button className={isButtonHoverable() ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover"} onClick={handleAddToCart}>Add to Cart</button>
                                     </div>
                                     {/*<a className="prod-download-section" href="#" //</div></div>target="_blank" 
                                         rel="noreferrer">
-                                        <i class="fa-solid fa-download"></i>
+                                        <i className="fa-solid fa-download"></i>
                                         <p>Download Technical Datasheet</p>
                                     </a>*/}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> : <div className="filter-no-pro">
+                </div>
+            ) : (
+                <div className="filter-no-pro">
                     <h1>Sorry! No Products Found.</h1>
-                </div>}
+                </div>
+            )}
             <div className={`cart-notifier ${showCartNotifier ? 'show' : ''}`}>
                 <div className="cart-notifier-start">
-                    <i class="fa-regular fa-circle-check"></i>
+                    <i className="fa-regular fa-circle-check"></i>
                     <h2>"{filterProduct?.display_title}" has been added to your cart.</h2>
                 </div>
                 <div className="cart-notifier-end">
@@ -354,6 +348,5 @@ const ProductSummary = () => {
         </div>
     )
 }
-
 
 export default ProductSummary;
