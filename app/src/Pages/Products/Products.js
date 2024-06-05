@@ -91,18 +91,18 @@ const Products = () => {
                                     <button class="product-dropbtn" onClick={() => { setEverythingClick(true) }}><h2>{categories[category]} <i class="fa-solid fa-angle-down"></i></h2></button>
                                 </OutsideClickHandler>
                                 <span class={everythingClick ? "product-dropdown-content active" : "product-dropdown-content"}>
-                                    <div onClick={() => { setCategory(0) }} className={category === 0 ? "product-dropdown-selected" : ""}>{categories[0]}</div>
-                                    <div onClick={() => { setCategory(1) }} className={category === 1 ? "product-dropdown-selected" : ""}>{categories[1]}</div>
-                                    <div onClick={() => { setCategory(2) }} className={category === 2 ? "product-dropdown-selected" : ""}>{categories[2]}</div>
-                                    <div onClick={() => { setCategory(3) }} className={category === 3 ? "product-dropdown-selected" : ""}>{categories[3]}</div>
-                                    <div onClick={() => { setCategory(4) }} className={category === 4 ? "product-dropdown-selected" : ""}>{categories[4]}</div>
-                                    <div onClick={() => { setCategory(5) }} className={category === 5 ? "product-dropdown-selected" : ""}>{categories[5]}</div>
-                                    <div onClick={() => { setCategory(6) }} className={category === 6 ? "product-dropdown-selected" : ""}>{categories[6]}</div>
-                                    <div onClick={() => { setCategory(7) }} className={category === 7 ? "product-dropdown-selected" : ""}>{categories[7]}</div>
-                                    {process === 1 && <div onClick={() => { setCategory(8) }} className={category === 8 ? "product-dropdown-selected" : ""}>{categories[8]}</div>}
-                                    {process === 1 && <div onClick={() => { setCategory(9) }} className={category === 9 ? "product-dropdown-selected" : ""}>{categories[9]}</div>}
-                                    {process === 1 && <div onClick={() => { setCategory(10) }} className={category === 10 ? "product-dropdown-selected" : ""}>{categories[10]}</div>}
-                                    {process === 1 && <div onClick={() => { setCategory(11) }} className={category === 11 ? "product-dropdown-selected" : ""}>{categories[11]}</div>}
+                                    <Link to={`/products?process=${process}&category=0`} className={category === 0 ? "product-dropdown-selected" : ""}>{categories[0]}</Link>
+                                    <Link to={`/products?process=${process}&category=1`} className={category === 1 ? "product-dropdown-selected" : ""}>{categories[1]}</Link>
+                                    <Link to={`/products?process=${process}&category=2`} className={category === 2 ? "product-dropdown-selected" : ""}>{categories[2]}</Link>
+                                    <Link to={`/products?process=${process}&category=3`} className={category === 3 ? "product-dropdown-selected" : ""}>{categories[3]}</Link>
+                                    <Link to={`/products?process=${process}&category=4`} className={category === 4 ? "product-dropdown-selected" : ""}>{categories[4]}</Link>
+                                    <Link to={`/products?process=${process}&category=5`} className={category === 5 ? "product-dropdown-selected" : ""}>{categories[5]}</Link>
+                                    <Link to={`/products?process=${process}&category=6`} className={category === 6 ? "product-dropdown-selected" : ""}>{categories[6]}</Link>
+                                    <Link to={`/products?process=${process}&category=7`} className={category === 7 ? "product-dropdown-selected" : ""}>{categories[7]}</Link>
+                                    {process === 1 && <Link to={`/products?process=${process}&category=8`} className={category === 8 ? "product-dropdown-selected" : ""}>{categories[8]}</Link>}
+                                    {process === 1 && <Link to={`/products?process=${process}&category=9`} className={category === 9 ? "product-dropdown-selected" : ""}>{categories[9]}</Link>}
+                                    {process === 1 && <Link to={`/products?process=${process}&category=10`} className={category === 10 ? "product-dropdown-selected" : ""}>{categories[10]}</Link>}
+                                    {process === 1 && <Link to={`/products?process=${process}&category=11`} className={category === 11 ? "product-dropdown-selected" : ""}>{categories[11]}</Link>}
                                 </span>
 
                             </span>
@@ -114,8 +114,8 @@ const Products = () => {
                                     <button class="product-dropbtn" onClick={() => { setCategoriesClick(true) }}><h2>{processes[process]} <i class="fa-solid fa-angle-down"></i></h2></button>
                                 </OutsideClickHandler>
                                 <span class={categoriesClick ? "product-dropdown-content active" : "product-dropdown-content"}>
-                                    <div onClick={() => { setProcess(0) }} className={process === 0 ? "product-dropdown-selected" : ""}>{processes[0]}</div>
-                                    <div onClick={() => { setProcess(1) }} className={process === 1 ? "product-dropdown-selected" : ""}>{processes[1]}</div>
+                                    <Link to={`/products?process=0&category=${category}`} className={process === 0 ? "product-dropdown-selected" : ""}>{processes[0]}</Link>
+                                    <Link to={`/products?process=1&category=${category}`} className={process === 1 ? "product-dropdown-selected" : ""}>{processes[1]}</Link>
                                 </span>
 
                             </span>

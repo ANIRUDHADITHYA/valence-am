@@ -73,14 +73,16 @@
     font-size: 18px;
 }
 
-.product-dropdown-content div {
+.product-dropdown-content a {
     padding: 8px 16px;
     text-decoration: none;
     display: block;
     transition: 0.2s;
+    color: var(--secondary-color);
+    text-decoration: none;
 }
 
-.product-dropdown-content div:hover {
+.product-dropdown-content a:hover {
     background-color: var(--primary-color);
     color: #fff;
 }
@@ -89,7 +91,7 @@
     display: block;
 }
 
-.product-dropdown-selected {
+a.product-dropdown-selected {
     background-color: var(--secondary-color);
     color: #fff;
 }

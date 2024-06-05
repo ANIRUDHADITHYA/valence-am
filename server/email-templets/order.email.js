@@ -173,7 +173,7 @@ const sendEmail = async (to, subject, order_detail, user) => {
                 </table>
             </div>
             `).join('')}
-            <p>Our team will be sending our official offer to you shortly.</p>
+            <p>Our team will be contacting you shortly through <b>${user.mobile}</b> and <b>${user.email}</b> to discuss the details further and present our official offer.</p>
             <p>Should you wish to provide more information or communicate directly with us, please reply to this email.
             </p>
             <p>Thanks,<br>The Valence Team</p>
