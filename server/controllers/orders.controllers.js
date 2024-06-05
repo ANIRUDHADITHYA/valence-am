@@ -37,3 +37,16 @@ export const createOrder = async (req, res) => {
         return res.status(500).json({ status: false, message: 'Error creating order', error: error.message });
     }
 };
+
+
+export const getAllOrders = async (req, res) => {
+    try {
+        // Find all orders and populate the user field with the corresponding user details
+        const orders = await Order.find().populate('user', '_id name company_name mobile email');
+
+        return res.status(200).json({ orders });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+

@@ -18,13 +18,13 @@ const orderSchema = new Schema({
 });
 
 const OrderSchema = new Schema({
-    user: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     orders: [orderSchema],
     timestamp: { type: Date, default: Date.now },
     order_id: { type: Number, required: true },
-    order_status: { type: String, default: "In Enquiry" }
+    order_status: { type: String, default: "Open Order" }
 });
 
-const Order = model("Orders", OrderSchema);
+const Order = model("Order", OrderSchema);
 
 export default Order;

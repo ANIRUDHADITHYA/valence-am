@@ -10,6 +10,6 @@ const TicketSchema = new Schema({
 })
 
 
-const Ticket = model("Tickets", TicketSchema);
+const Ticket = model("Ticket", TicketSchema);
 
 export default Ticket;

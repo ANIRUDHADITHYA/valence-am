@@ -13,6 +13,6 @@ const BASSchema = new Schema({
 })
 
 
-const BASTicket = model("BASTickets", BASSchema);
+const BASTicket = model("BASTicket", BASSchema);
 
 export default BASTicket;

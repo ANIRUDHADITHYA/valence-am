@@ -34,7 +34,7 @@ const productSchema = new Schema({
     product_status: { type: Boolean, default: true }
 });
 
-const Product = model("Products", productSchema)
+const Product = model("Product", productSchema)
 
 export default Product;
 
