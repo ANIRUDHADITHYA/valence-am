@@ -118,7 +118,6 @@ export default function Navbar(props) {
                     <div className={mobileNavbar ? 'nav-mobile-container show' : 'nav-mobile-container'}>
                         <p className="get-price-header" onClick={() => { setMobileNavbar(false) }}>Close <span> &times;</span></p>
                         <ul className='nav-items mid'>
-
                             <li onClick={() => { setMobileNavbar(false) }}><Link className='hv-underline' to="/about">About</Link></li>
                             <li onClick={() => { setMobileNavbar(false) }}><Link className='hv-underline' to="/products?process=0"><span className='mid-main'>Autoclave & Oven</span></Link></li>
                             <li onClick={() => { setMobileNavbar(false) }}><Link className='hv-underline' to="/products?process=1"><span className='mid-main'>Low Temperature & Infusion</span></Link></li>

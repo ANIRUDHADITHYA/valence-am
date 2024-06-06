@@ -128,7 +128,7 @@ export default function SignSlider(props) {
                                             autoComplete="off"
                                             required
                                         />
-                                        <label className="floating-label">Mobile Number</label>
+                                        <label className="floating-label">Phone (mention country code)</label>
                                         {signupValueErrors.mobile && <p className="err-msg-validation">*{signupValueErrors.mobile}</p>}
                                     </div>
                                     <div className="floating-label-group slider">

@@ -17,7 +17,7 @@ export default function ValidateBecomeASupplier(values) {
 
     if (!values.phone) {
         errors.phone = "Phone Number is required";
-    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(values.phone)) {
+    } else if (values.phone.trim().length > 15) {
         errors.phone = "Invalid Phone Number";
     }
 

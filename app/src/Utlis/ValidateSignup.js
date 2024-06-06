@@ -13,9 +13,9 @@ export default function ValidateSignup(values) {
     }
 
     if (!values.mobile) {
-        errors.mobile = "Mobile number is required";
-    } else if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(values.mobile)) {
-        errors.mobile = "Invalid mobile number";
+        errors.mobile = "Phone number is required";
+    } else if (values.mobile.trim().length > 15) {
+        errors.mobile = "Phone number is invalid"
     }
 
     if (!values.email.trim()) {

@@ -124,7 +124,7 @@ export default function BecomeASupplier() {
                                             className="form-control"
                                             autoComplete="off"
                                             required />
-                                        <label className="floating-label">Phone</label>
+                                        <label className="floating-label">Phone (mention country code)</label>
                                     </div>
                                     {valuesError.phone && <span className="err-msg-validation" style={{ color: "#aa0000" }}>*{valuesError.phone}</span>}
                                 </div>

@@ -22,7 +22,7 @@ const Products = () => {
     const history = useNavigate();
     const params = new URLSearchParams(location.search);
 
-    const [category, setCategory] = useState(0);
+    const [category, setCategory] = useState(1);
     const [process, setProcess] = useState(0);
 
 
@@ -33,7 +33,7 @@ const Products = () => {
         if (categoryParam !== null) {
             setCategory(parseInt(categoryParam));
         } else {
-            setCategory(0);
+            setCategory(1);
         }
 
         if (processParam !== null) {
@@ -91,7 +91,6 @@ const Products = () => {
                                     <button class="product-dropbtn" onClick={() => { setEverythingClick(true) }}><h2>{categories[category]} <i class="fa-solid fa-angle-down"></i></h2></button>
                                 </OutsideClickHandler>
                                 <span class={everythingClick ? "product-dropdown-content active" : "product-dropdown-content"}>
-                                    <Link to={`/products?process=${process}&category=0`} className={category === 0 ? "product-dropdown-selected" : ""}>{categories[0]}</Link>
                                     <Link to={`/products?process=${process}&category=1`} className={category === 1 ? "product-dropdown-selected" : ""}>{categories[1]}</Link>
                                     <Link to={`/products?process=${process}&category=2`} className={category === 2 ? "product-dropdown-selected" : ""}>{categories[2]}</Link>
                                     <Link to={`/products?process=${process}&category=3`} className={category === 3 ? "product-dropdown-selected" : ""}>{categories[3]}</Link>
@@ -128,7 +127,7 @@ const Products = () => {
                         <div class="row">
                             {sortedProducts.length ? (
                                 sortedProducts.map(product => (
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5" key={product.index}>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-5" key={product.index}>
                                         <Link className="product-card" key={product.index} to={`/products/${product.product_id}?process=${process}`}>
                                             <div className="product-card-img">
                                                 <img src={`${imageCDN}/${product.product_image}.jpg`} alt="" />
@@ -138,10 +137,11 @@ const Products = () => {
                                                     <h1>{product.display_title}</h1>
                                                     <h2>{categories[product.category_id]}</h2>
                                                 </div>
-                                                {product.temperature ? <div className="products-card-temp-container">
-                                                    <i class="fa-solid fa-temperature-full"></i>
-                                                    <h2>{product.temperature}°C</h2>
-                                                </div> : ""}
+                                                {product.temperature ?
+                                                    <div className="products-card-temp-container">
+                                                        <i class="fa-solid fa-temperature-full"></i>
+                                                        <h2>{product.temperature}°C</h2>
+                                                    </div> : ""}
                                             </div>
                                         </Link>
                                     </div>
