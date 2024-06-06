@@ -28,9 +28,9 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className='sidebar-item'>
-                    <a href='/view-orders'><i class="fa-solid fa-box-open"></i></a>
+                    <a href='/orders'><i class="fa-solid fa-box-open"></i></a>
                     <div className='icon-title-container'>
-                        <h1><a href='/view-orders'>View Orders</a></h1>
+                        <h1><a href='/orders'>View Orders</a></h1>
                     </div>
                 </div>
                 <div className='sidebar-item logout'>

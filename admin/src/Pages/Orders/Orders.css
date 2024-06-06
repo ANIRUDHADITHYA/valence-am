@@ -1,7 +1,7 @@
 .order-section {
     width: 100%;
     background-color: #f6f6f6;
-    min-height: 100vh;
+    min-height: 100%;
     margin: 0;
     position: relative;
 }
@@ -80,14 +80,17 @@
 
 .order-status.in-enquiry span {
     background-color: var(--primary-color);
+    color: white;
 }
 
 .order-status.accepted span {
     background-color: green;
+    color: white;
 }
 
 .order-status.rejected span {
     background-color: rgb(196, 0, 0);
+    color: white;
 }
 
 
@@ -119,6 +122,7 @@
     font-size: 16px;
     border: 1px solid black;
     border-radius: 5px;
+    width: 300px;
 }
 
 .filter-sort button {
@@ -164,4 +168,102 @@
     padding: 5px;
     border-radius: 5px;
     font-size: 16px;
+    width: 150px;
+}
+
+.order-summary-container {
+    margin-left: 100px;
+    margin-right: 20px;
+}
+
+.order-lists {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-ultra-lite-color);
+}
+
+.order-lists img {
+    width: 200px;
+    height: 200px;
+}
+
+.order-specs {
+    padding-left: 50px;
+    width: 500px;
+}
+
+.order-specs a {
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.order-specs a:hover {
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.order-phy-prop p {
+    padding: 2px 0px;
+}
+
+.order-specs h3 {
+    font-size: 16px;
+    padding-bottom: 5px;
+    font-weight: 700;
+}
+
+.qty {
+    padding-left: 50px;
+    font-weight: 600;
+}
+
+.order-summary-section {
+    background-color: #f6f6f6;
+    min-height: 100vh;
+    position: absolute;
+    min-width: 100vw;
+}
+
+
+.order-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.order-wrapper .order-content.header {
+    padding: 20px;
+}
+
+.order-index {
+    font-size: 22px;
+    padding: 20px;
+    padding-right: 50px;
+    color: var(--secondary-color);
+}
+
+
+.user_details {
+    padding: 20px;
+    background-color: white;
+    border-top: 20px solid #f6f6f6;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.user_details h3 {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-ultra-lite-color);
+}
+
+.user_details .order-content {
+    padding-top: 20px;
+    flex-wrap: wrap;
 }
