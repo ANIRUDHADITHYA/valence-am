@@ -19,6 +19,7 @@ function App() {
               <Route path="/" exact element={<Login />} />
               <Route path="/dashboard" element={<ProtectedRoute element={Dashboard} />} />
               <Route path="/add-product" element={<ProtectedRoute element={AddProduct} />} />
+              <Route path="/update-product" element={<ProtectedRoute element={AddProduct} />} />
               <Route path="/orders" element={<ProtectedRoute element={Orders} />} />
               <Route path="/orders/:orderID" element={<ProtectedRoute element={Order} />} />
             </Routes>
