@@ -200,9 +200,10 @@ a.product-dropdown-selected {
 .filter-no-pro {
     display: flex;
     width: 100%;
+    align-items: center;
     justify-content: center;
-    margin: 50px 0px;
-    height: 30vh;
+    padding: 50px 0px;
+    height: 85vh;
 }
 
 @media(max-width: 550px) {

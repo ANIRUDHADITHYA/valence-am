@@ -2,9 +2,10 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    margin-right: 20px;
-    margin-left: 20px;
-    width: fit-content;
+    margin: auto;
+    width: 95%;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .user-details-top {
@@ -13,4 +14,56 @@
 
 .user-details-top p {
     padding: 20px;
+}
+
+
+/* AccountHolders.css */
+.add-product-container {
+    padding: 20px;
+}
+
+.page-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.download-button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.users-table th,
+.users-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.users-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.users-table tr:hover {
+    background-color: #ddd;
 }

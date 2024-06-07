@@ -1,25 +1,36 @@
-import { useState, useEffect, useContext } from "react";
-import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import OutsideClickHandler from "react-outside-click-handler";
-import { Toaster } from "react-hot-toast";
+import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
-import { ProductsContext } from "../../ContextAPI/ProductsContext";
-import { categories, imageCDN } from "../../Utlis/globalVariables";
 import "./ProductSummary.css";
+import { Link, useLocation, useParams } from "react-router-dom";
+import OutsideClickHandler from "react-outside-click-handler";
+import { useEffect } from "react";
+import { categories, imageCDN } from "../../Utlis/globalVariables.js"
+import { useContext } from "react";
+import { ProductsContext } from "../../ContextAPI/ProductsContext.js";
+import { Toaster } from "react-hot-toast";
 
 const ProductSummary = () => {
+
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const { allProducts } = useContext(ProductsContext);
-    const navigate = useNavigate();
-
-    const { productID } = useParams();
 
     const [showCartNotifier, setShowCartNotifier] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const increaseQuantity = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const { productID } = useParams();
+
     const [currentProcess, setCurrentProcess] = useState(0);
-    const [property, setProperty] = useState([]);
 
     useEffect(() => {
         const processParam = params.get("process");
@@ -29,19 +40,12 @@ const ProductSummary = () => {
         } else {
             setCurrentProcess(0);
         }
-    }, [params]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params.get("process")]);
 
-    const filterProduct = allProducts.filter(product => product.product_id === productID)[0];
+    const filterProduct = allProducts.filter(product => product.product_id === productID).length ? allProducts.filter(product => product.product_id === productID)[0] : 0;
 
-    useEffect(() => {
-        if (!filterProduct) {
-            navigate("/404");
-        }
-    }, [filterProduct, navigate]);
 
-    if (!filterProduct) {
-        return null; // Return null to avoid rendering anything until navigation happens
-    }
 
     function generateCartId() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -71,27 +75,18 @@ const ProductSummary = () => {
         }
     }
 
-    const decreaseQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-        }
-    };
-
-    const increaseQuantity = () => {
-        setQuantity(quantity + 1);
-    };
-
+    const [property, setProperty] = useState([]);
     const Dropdown = ({ name, id, options, index, unit }) => {
+
         const [showOption, setShowOption] = useState("");
         const [customValue, setCustomValue] = useState("");
-        const [customError, setCustomError] = useState("");
+        const [customError, setCustomError] = useState("")
 
         const isPreviousSelected =
             index === 0 ||
             (property[index - 1] !== undefined &&
                 property[index - 1].value !== undefined &&
                 (!property[index - 1].customized || (property[index - 1].customized && property[index - 1].custom_value !== "")));
-
         const handleChange = (newValue) => {
             if (newValue === "Customize") {
                 setProperty((prevState) => {
@@ -114,12 +109,13 @@ const ProductSummary = () => {
         function handleAddCustom() {
             let error = "";
             if (!customValue.trim()) {
-                error = `${name} is required`;
-                setCustomError(error);
+                error = `${name} is required`
+                setCustomError(error)
             } else if (options.includes(customValue)) {
                 error = "Value already available with us";
-                setCustomError(error);
-            } else {
+                setCustomError(error)
+            }
+            else {
                 setProperty((prevState) => {
                     const newState = [...prevState.slice(0, index), { ...property[index], custom_value: customValue }];
                     return newState;
@@ -217,7 +213,7 @@ const ProductSummary = () => {
             localStorage.setItem('cartValues', cartValuesJSON);
 
             setProperty([]);
-            setQuantity(1);
+            setQuantity(1)
             setShowCartNotifier(true);
 
             setTimeout(() => {
@@ -242,93 +238,104 @@ const ProductSummary = () => {
         <div className="product-page-main">
             <Navbar />
             <Toaster position="top-left" reverseOrder={false} />
-            <div className="product-summary-container">
-                <div className="product-summary-header">
-                    <ul className="ps-nav-container">
-                        <li><Link to="/">Home</Link><i className="fa-solid fa-angle-right"></i></li>
-                        <li><Link to="/products">Products</Link><i className="fa-solid fa-angle-right"></i></li>
-                        <li><Link to={`/products?process=${currentProcess}&category=${filterProduct.category_id}`}>{categories[filterProduct.category_id]}</Link><i className="fa-solid fa-angle-right"></i></li>
-                        <li><Link to="#">{filterProduct.product_name}</Link></li>
-                    </ul>
-                    <div className="ps-nav-container-pn">
-                        {prevProduct ? (
-                            <Link to={`/products/${prevProduct.product_id}?process=${currentProcess}`}>PREV</Link>
-                        ) : (
-                            <span style={{ visibility: 'hidden' }}>PREV</span>
-                        )}
-                        {nextProduct ? (
-                            <Link to={`/products/${nextProduct.product_id}?process=${currentProcess}`}>NEXT</Link>
-                        ) : (
-                            <span style={{ visibility: 'hidden' }}>NEXT</span>
-                        )}
-                    </div>
-                </div>
-                <div className="ps-details-container">
-                    <div className="ps-image-section">
-                        <div className="ps-image-conatiner">
-                            <div className="ps-image-wrapper">
-                                <img src={`${imageCDN}/${filterProduct.product_image}.jpg`} alt="" />
-                            </div>
+            {filterProduct ? (
+                <div className="product-summary-container">
+                    <div className="product-summary-header">
+                        <ul className="ps-nav-container">
+                            <li><Link to="/">Home</Link><i className="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="/products">Products</Link><i className="fa-solid fa-angle-right"></i></li>
+                            <li><Link to={`/products?process=${currentProcess}&category=${filterProduct.category_id}`}>{categories[filterProduct.category_id]}</Link><i className="fa-solid fa-angle-right"></i></li>
+                            <li><Link to="#">{filterProduct.product_name}</Link></li>
+                        </ul>
+                        <div className="ps-nav-container-pn">
+                            {prevProduct ? (
+                                <Link to={`/products/${prevProduct.product_id}?process=${currentProcess}`}>PREV</Link>
+                            ) : (
+                                <span style={{ visibility: 'hidden' }}>PREV</span>
+                            )}
+                            {nextProduct ? (
+                                <Link to={`/products/${nextProduct.product_id}?process=${currentProcess}`}>NEXT</Link>
+                            ) : (
+                                <span style={{ visibility: 'hidden' }}>NEXT</span>
+                            )}
                         </div>
                     </div>
-                    <div className="ps-details-data-section">
-                        <div className="ps-details-data-container">
-                            <div className="ps-details-data-header">
-                                <div className="ps-details-data-title">
-                                    <h1>{filterProduct.product_name}</h1>
-                                    <h2>{categories[filterProduct.category_id]}</h2>
-                                </div>
-                                {filterProduct.temperature ? (
-                                    <div className="ps-details-data-temperature">
-                                        <div className="ps-details-data-temperature-image-wrapper">
-                                            <i className="fa-solid fa-temperature-full"></i>
-                                        </div>
-                                        <h1>{filterProduct.temperature}°C</h1>
-                                    </div>
-                                ) : ""}
-                            </div>
-                            <div className="ps-details-data-body">
-                                <p>{filterProduct.product_discription}</p>
-                                <div className="pc-physical-dimentions-container">
-                                    {filterProduct.physical_dimensions && filterProduct.physical_dimensions.length > 0 && filterProduct.physical_dimensions.map((dimension, index) => (
-                                        <Dropdown
-                                            key={index}
-                                            name={dimension.name}
-                                            id={dimension.id}
-                                            unit={dimension.unit}
-                                            options={filterProduct.dimension_values
-                                                .filter((value) => {
-                                                    if (index === 0) {
-                                                        return true;
-                                                    } else {
-                                                        return property.slice(0, index).every((prevValue, prevIndex) => {
-                                                            return prevValue && value.values[filterProduct.physical_dimensions[prevIndex].id] === prevValue.value;
-                                                        });
-                                                    }
-                                                })
-                                                .map((value) => value.values[dimension.id])
-                                                .filter((value, idx, self) => self.indexOf(value) === idx)
-                                            }
-                                            index={index}
-                                        />
-                                    ))}
-                                </div>
-                                <div className="ps-button-wrapper">
-                                    <div className="prod-prop-quantity">
-                                        <h3 id="quantity_products">Quantity</h3>
-                                        <div className="wrapper products">
-                                            <span className="minus" onClick={decreaseQuantity} style={quantity === 1 ? { opacity: 0 } : { opacity: 1 }}>-</span>
-                                            <span className="num">{quantity}</span>
-                                            <span className="plus" onClick={increaseQuantity}>+</span>
-                                        </div>
-                                    </div>
-                                    <button className={isButtonHoverable() ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover"} onClick={handleAddToCart}>Add to Cart</button>
+                    <div className="ps-details-container">
+                        <div className="ps-image-section">
+                            <div className="ps-image-conatiner">
+                                <div className="ps-image-wrapper">
+                                    <img src={`${imageCDN}/${filterProduct.product_image}.jpg`} alt="" />
                                 </div>
                             </div>
                         </div>
+                        <div className="ps-details-data-section">
+                            <div className="ps-details-data-container">
+                                <div className="ps-details-data-header">
+                                    <div className="ps-details-data-title">
+                                        <h1>{filterProduct.product_name}</h1>
+                                        <h2>{categories[filterProduct.category_id]}</h2>
+                                    </div>
+                                    {filterProduct.temperature ? (
+                                        <div className="ps-details-data-temperature">
+                                            <div className="ps-details-data-temperature-image-wrapper">
+                                                <i className="fa-solid fa-temperature-full"></i>
+                                            </div>
+                                            <h1>{filterProduct.temperature}°C</h1>
+                                        </div>
+                                    ) : ""}
+                                </div>
+                                <div className="ps-details-data-body">
+                                    <p>{filterProduct.product_discription}</p>
+                                    <div className="pc-physical-dimentions-container">
+                                        {filterProduct.physical_dimensions && filterProduct.physical_dimensions.length > 0 && filterProduct.physical_dimensions.map((dimension, index) => (
+                                            <Dropdown
+                                                key={index}
+                                                name={dimension.name}
+                                                id={dimension.id}
+                                                unit={dimension.unit}
+                                                options={filterProduct.dimension_values
+                                                    .filter((value) => {
+                                                        if (index === 0) {
+                                                            return true;
+                                                        } else {
+                                                            return property.slice(0, index).every((prevValue, prevIndex) => {
+                                                                return prevValue && value.values[filterProduct.physical_dimensions[prevIndex].id] === prevValue.value;
+                                                            });
+                                                        }
+                                                    })
+                                                    .map((value) => value.values[dimension.id])
+                                                    .filter((value, idx, self) => self.indexOf(value) === idx)
+                                                }
+                                                index={index}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className="ps-button-wrapper">
+                                        <div className="prod-prop-quantity">
+                                            <h3 id="quantity_products">Quantity</h3>
+                                            <div className="wrapper products">
+                                                <span className="minus" onClick={decreaseQuantity} style={quantity === 1 ? { opacity: 0 } : { opacity: 1 }}>-</span>
+                                                <span className="num">{quantity}</span>
+                                                <span className="plus" onClick={increaseQuantity}>+</span>
+                                            </div>
+                                        </div>
+                                        <button className={isButtonHoverable() ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover"} onClick={handleAddToCart}>Add to Cart</button>
+                                    </div>
+                                    {/*<a className="prod-download-section" href="#" //</div></div>target="_blank" 
+                                        rel="noreferrer">
+                                        <i className="fa-solid fa-download"></i>
+                                        <p>Download Technical Datasheet</p>
+                                    </a>*/}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <div className="filter-no-pro">
+                    <h1>Sorry! No Products Found.</h1>
+                </div>
+            )}
             <div className={`cart-notifier ${showCartNotifier ? 'show' : ''}`}>
                 <div className="cart-notifier-start">
                     <i className="fa-regular fa-circle-check"></i>
@@ -341,7 +348,7 @@ const ProductSummary = () => {
             </div>
             <Footer />
         </div>
-    );
-};
+    )
+}
 
 export default ProductSummary;

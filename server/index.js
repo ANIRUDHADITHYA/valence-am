@@ -25,7 +25,7 @@ connectDB();
 //Middleware for User
 app.use('/api/auth', UserRouter)
 
-//Middleware for Product
+//Middleware for Admin
 app.use('/api/auth/admin', AdminRouter)
 
 //Middleware for Product
