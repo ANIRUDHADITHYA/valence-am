@@ -1,0 +1,27 @@
+.update-search {
+    display: flex;
+    width: 90%;
+    margin-left: 20px;
+}
+
+.update-search input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.update-search button {
+    padding: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.update-search button:hover {
+    background-color: var(--secondary-color);
+}

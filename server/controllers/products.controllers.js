@@ -9,6 +9,16 @@ export const getAllProducts = async (req, res) => {
     }
 }
 
+export const getActiveProducts = async (req, res) => {
+    try {
+        const activeProducts = await Product.find({ product_status: true });
+        res.json(activeProducts);
+    } catch (error) {
+        console.error('Error fetching active products:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 
 export const addProduct = async (req, res) => {
     try {
@@ -49,3 +59,76 @@ export const addProduct = async (req, res) => {
         return res.status(400).json({ message: error.message })
     }
 }
+
+export const getproductByID = async (req, res) => {
+    const product_id = req.params.productID;
+    try {
+        const product = await Product.find({ product_id });
+        return res.status(201).json({ product });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+export const updateProductById = async (req, res) => {
+    try {
+        const product_id = req.params.productID;
+        const updateData = req.body;
+
+        const updatedProduct = await Product.findOneAndUpdate({ product_id }, updateData, { new: true });
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating product', error });
+    }
+};
+
+export const hideProductById = async (req, res) => {
+    try {
+        const product_id = req.params.productID;
+
+        const product_status = false;
+        console.log(product_id)
+
+        const updatedProduct = await Product.findOneAndUpdate(
+            { product_id },
+            { product_status },
+            { new: true }
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating product status', error });
+    }
+};
+
+export const unHideProductById = async (req, res) => {
+    try {
+        const product_id = req.params.productID;
+
+        const product_status = true;
+        console.log(product_id)
+
+        const updatedProduct = await Product.findOneAndUpdate(
+            { product_id },
+            { product_status },
+            { new: true }
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating product status', error });
+    }
+};

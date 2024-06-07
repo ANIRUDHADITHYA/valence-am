@@ -1,0 +1,25 @@
+.product-show-card {
+    width: 80%;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 10px 20px;
+}
+
+.product-show-card button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.product-show-card button:hover {
+    background-color: green;
+}

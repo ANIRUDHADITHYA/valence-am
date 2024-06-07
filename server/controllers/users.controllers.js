@@ -221,3 +221,12 @@ export const signout = (req, res) => {
     res.clearCookie('access_token');
     return res.json({ status: true, message: 'Signed out successfully' });
 }
+
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password -role -reset_credentials');
+        return res.status(201).json({ users });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}

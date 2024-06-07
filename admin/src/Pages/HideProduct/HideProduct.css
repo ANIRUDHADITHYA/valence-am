@@ -1,0 +1,28 @@
+.product-details {
+    width: fit-content;
+    margin-left: 20px;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.product-details p {
+    margin: 10px;
+}
+
+.product-details button {
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.product-details button:hover {
+    background-color: red;
+}

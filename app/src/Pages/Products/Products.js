@@ -134,7 +134,7 @@ const Products = () => {
                                             </div>
                                             <div className="min-details">
                                                 <div className="products-card-title-container">
-                                                    <h1>{product.display_title}</h1>
+                                                    <h1>{product.product_name}</h1>
                                                     <h2>{categories[product.category_id]}</h2>
                                                 </div>
                                                 {product.temperature ?

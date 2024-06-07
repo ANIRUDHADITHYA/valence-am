@@ -23,7 +23,8 @@ const Sidebar = () => {
                         <div className='sidebar-subitems'>
                             <a href='/add-product'>Add Product</a>
                             <a href='/update-product'>Update Product</a>
-                            <a href='/delete-product'>Delete Product</a>
+                            <a href='/hide-product'>Hide Product</a>
+                            <a href='/show-product'>Show Product</a>
                         </div>
                     </div>
                 </div>
@@ -31,6 +32,12 @@ const Sidebar = () => {
                     <a href='/orders'><i class="fa-solid fa-box-open"></i></a>
                     <div className='icon-title-container'>
                         <h1><a href='/orders'>View Orders</a></h1>
+                    </div>
+                </div>
+                <div className='sidebar-item'>
+                    <a href='/account-holders'><i class="fa-solid fa-users"></i></a>
+                    <div className='icon-title-container'>
+                        <h1><a href='/account-holders'>Account Holders</a></h1>
                     </div>
                 </div>
                 <div className='sidebar-item logout'>

@@ -9,8 +9,8 @@ export const ProductsProvider = ({ children }) => {
 
     const fetchProducts = async () => {
         try {
-            const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/api/products`);
-            const products = response.data.products;
+            const response = await Axios.get(`${process.env.REACT_APP_API_HOST_URL}/api/products/active`);
+            const products = response.data;
             sessionStorage.setItem('products', JSON.stringify(products));
             setAllProducts(products);
             setLoading(false);
