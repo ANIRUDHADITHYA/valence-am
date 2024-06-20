@@ -321,11 +321,11 @@ const ProductSummary = () => {
                                         </div>
                                         <button className={isButtonHoverable() ? "ps-add-to-cart-btn hover" : "ps-add-to-cart-btn no-hover"} onClick={handleAddToCart}>Add to Cart</button>
                                     </div>
-                                    {/*<a className="prod-download-section" href="#" //</div></div>target="_blank" 
+                                    <a className="prod-download-section" href={`https://downloads.valence-am.com/${filterProduct.product_image}.pdf`} target="_blank"
                                         rel="noreferrer">
                                         <i className="fa-solid fa-download"></i>
                                         <p>Download Technical Datasheet</p>
-                                    </a>*/}
+                                    </a>
                                 </div>
                             </div>
                         </div>
