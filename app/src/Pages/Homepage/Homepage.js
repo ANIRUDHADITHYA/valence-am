@@ -57,7 +57,7 @@ const Homepage = () => {
                                     <Link to="/become-a-supplier" className="home-nav-item-div">
                                         <div className="home-nav-item-span-title">Become A Supplier!</div>
                                         <div className="home-nav-item-span-subtitle">
-                                            <span className="underline-effect">Driving innovation through unity.</span>
+                                            <span className="underline-effect">Driving Innovation Through Unity!</span>
                                         </div>
                                     </Link>
                                 </li>
